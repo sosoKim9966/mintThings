@@ -44,7 +44,7 @@
 </nav> <br><br><br>
 
 <div>
-	<h1 align="center" style="font: bold; font-size: 45px; margin-left: -30px;"><a href="/main" style="color:black; text-decoration: none ;">Shop</a></h1><br><br><hr> 
+	<h1 align="center" style="font: bold; font-size: 45px; margin-left: -30px;"><a href="/main" style="color:#B2EBF4; text-decoration: none ;">mint Things.</a></h1><br><br><hr> 
 	<div class="container">
 		<div class="row">
         <div>

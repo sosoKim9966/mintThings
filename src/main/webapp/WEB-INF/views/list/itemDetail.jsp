@@ -10,37 +10,41 @@
 <meta charset="UTF-8">
 <title>상세 페이지</title>
 </head>
+<style>
+img {
+	width: 400px;
+	height: 400px;
+	margin: 20px 20px 20px 0px;
+}
+</style>
 <body>
-	<!-- ============================================================== -->
-    <!-- Start Page Content here -->
-    <!-- ============================================================== -->
 
 <div class="content-page">
 	<div class="content">
  	<!-- Start Content-->
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-lg-5">
+				
 					<div class="row justify-content-center">
-						<div class="col-xl-8">
+						
 							<div id="product-carousel" class="carousel slide product-detail-carousel" data-bs-ride="carousel">
 								<div class="carousel-inner">
 									<div class="carousel-item active">
 										<div>
-											<img src="../resources/images/items/${item.item_Image }" alt="product-img" class="img-fluid">
+											<img src="../resources/images/items/${items.item_Image }" alt="product-img" class="img-fluid">
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						
 					</div>
-				</div>
+				
 				<div class="col-lg-7"> 
-				<h4 class="mb-1">${items.item_Name}</h4>
+				<h4 class="mb-1"><c:out value="${items.item_Name}"/></h4>
 
 				<div class="mt-3">
-					<h4>판매가 : <span class="text-muted me-2"><del>${item.item_Price}</del></span><br>
-					<b> 할인 판매가 : ${item.item_Sale_Price } (할인)</b></h4>
+					<h4>판매가 : <span class="text-muted me-2"><del>${items.item_Price}</del></span><br>
+					<b> 할인 판매가 : ${items.item_Sale_Price } (할인)</b></h4>
 				</div>
 				<hr/>
 
@@ -76,7 +80,15 @@
 						<option value="3">레드</option>
 					</select>
 				</div>
-				
+				<label class="my-1 me-2" for="sizeinput">dd</label>
+				<div class="me-sm-3">
+					<select class="form-select my-1" id="sizeinput">
+						<option selected>Small</option>
+						<option value="1">화이트</option>
+						<option value="2">블랙</option>
+						<option value="3">레드</option> 
+					</select>
+				</div>
 			</form>
 			<div>
 				<button type="button" class="btn btn-success waves-effect waves-light">

@@ -33,29 +33,31 @@ div.content-page {
 	
             <!-- Start Content--> <!-- 1, 5, 10 마다 " style="margin-left: 105px;" -->
             <div class="container-fluid">
-                <h3 style="text-align: center;">WEEKLY BEST</h3>
+                <h3 style="text-align: center; color: #3DB7CC;">WEEKLY BEST</h3>
 	                <div class="row">
-                		<c:forEach var="items" items="${list}">
+                		<c:forEach var="items" items="${items}">
 		                    <div class="col-sm-2">
 		                        <div class="card product-box">
 		                            <div class="product-img">
 		                                <div class="p-3">
-		                                	<a href="/shop/items/detail/${items.item_No}"></a>
-		                                    <img src="../resources/images/items/${items.item_Image }" class="img-fluid" style=""/>
+		                                	<a href="/items/detail?item_no=${items.item_No}" class="move">
+		                                    <img src="../resources/images/items/${items.item_Image }" class="img-fluid" style=""/></a>
 		                                </div>
+		                                <!-- 관리자 페이지만 보이게 하기
 		                                <div class="product-action">
 		                                    <div class="d-flex">
 		                                        <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-edit-2-fill align-middle"></i> Edit</a>
 		                                        <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-delete-bin-fill align-middle"></i> Delete</a>
 		                                    </div>
 		                                </div>
+		                                -->
 		                            </div> 
 		                            <div class="product-info border-top p-3">
 	                                <div>
 	                                    <h5 class="font-16 mt-0 mb-1">
-	                                   		<a href="/shop/items/detail/${items.item_No}" class="text-dark">${items.item_Name}</a> 
+	                                   		<a href="/items/detail?item_no=${items.item_No}" class="move" style="margin-left: 27px; color: black;">${items.item_Name}</a> 
 	                                    </h5>
-	                                    <h4 class="m-0"> <span class="text-muted"> Price : <fmt:formatNumber value="${items.item_Price}" pattern="###,###,###"/></span></h4>
+	                                    <h4 class="m-0" style="margin-left: 27px;"> <span class="text-muted" > Price : <fmt:formatNumber value="${items.item_Price}" pattern="###,###,###"/></span></h4>
 	                                </div>
 	                            </div> <!-- end product info-->
 		                        </div>
@@ -96,5 +98,7 @@ div.content-page {
     <!-- ============================================================== -->
     <!-- End Page content -->
     <!-- ============================================================== -->
+<script>
+</script>    
 </body>
 </html>

@@ -6,14 +6,14 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>myShop</title>
+  <title>mintThings</title>
   
   
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" style="text/css" href="/resources/static/css/footer.css"/>
-  
+  <script type="text/javascript" src="/resources/js/jquery-3.6.0.min.js"></script>
   <!-- Ionicons 
   <link rel="stylesheet" href="<c:url value='/resources/bower_components/Ionicons/css/ionicons.min.css' />">-->
   <!-- Theme style 

@@ -7,8 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shop.mint.general.items.domain.ItemVO;
 import com.shop.mint.general.items.mapper.ItemMapper;
@@ -19,22 +21,25 @@ public class ItemController {
 	
 	@Autowired
 	private ItemService itemServiceImpl;
-
+	
+	ItemMapper itemMapper;
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 
+	//메인 상품리스트
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String getmainList(Model model) throws Exception {
-		logger.info("main 실행중.............");
-		List<ItemVO> list;
-		list = itemServiceImpl.getMainList();
-		model.addAttribute("list", list);
+		logger.info("(controller)getmainList 실행");
+		List<ItemVO> items;
+		items = itemServiceImpl.getMainList();
+		model.addAttribute("items", items);
 		return "main";
 	}
 
+	//카테고리별 상품리스트
 	@RequestMapping(value = "/cateList/Best10", method = RequestMethod.GET) 
 	public String getCateList( Model model) throws Exception {
 		
-		logger.info("list 실행중............."); 
+		logger.info("(controller)getCateList 실행"); 
 
 //		int total = itemServiceImpl.countItem();
 //		if(nowPage == null && cntPerPage == null) {
@@ -49,16 +54,18 @@ public class ItemController {
 //		pagingVO = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 //		model.addAttribute("paging", pagingVO);
 //		model.addAttribute("viewAll", itemServiceImpl.selectItem(pagingVO));
-		List<ItemVO> list = itemServiceImpl.getCateList();
-		model.addAttribute("list", list);
+		List<ItemVO> items = itemServiceImpl.getCateList();
+		model.addAttribute("items", items);
 		return "list/cateList"; 
 	}
 	
-	@RequestMapping(value = "/item/detail", method = RequestMethod.GET) 
-	public String getDetail(Model model, int item_No) throws Exception {
-		logger.info("디테일 실행중............."); 
-		model.addAttribute("detailList", itemServiceImpl.getItemDetail(item_No));
-		return "list/itemDetail"; 
+	//아이템 상세
+	@RequestMapping(value = "/items/detail", method = RequestMethod.GET) 
+	public String getItemDetail(int item_no, Model model) throws Exception {
+		logger.info("(controller)getDetail 실행 " + item_no); 
+		
+		model.addAttribute("items", itemServiceImpl.getItemDetail(item_no));
+		return "list/itemDetail";
 	}
 	
 	

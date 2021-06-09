@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.shop.mint.general.items.domain.ItemOptionVO;
 import com.shop.mint.general.items.domain.ItemVO;
 import com.shop.mint.general.items.mapper.ItemMapper;
 import com.shop.mint.general.items.service.ItemService;
@@ -29,8 +30,7 @@ public class ItemController {
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String getmainList(Model model) throws Exception {
 		logger.info("(controller)getmainList 실행");
-		List<ItemVO> items;
-		items = itemServiceImpl.getMainList();
+		List<ItemVO> items = itemServiceImpl.getMainList();
 		model.addAttribute("items", items);
 		return "main";
 	}
@@ -59,12 +59,25 @@ public class ItemController {
 		return "list/cateList"; 
 	}
 	
+	//상품 전체 리스트
+	@RequestMapping(value = "/cateList/all", method = RequestMethod.GET) 
+	public String getAllList( Model model) throws Exception {
+		
+		logger.info("(controller)getAllList 실행"); 
+
+		List<ItemVO> items = itemServiceImpl.getCateList();
+		model.addAttribute("items", items);
+		return "list/cateList"; 
+	}
+	
 	//아이템 상세
 	@RequestMapping(value = "/items/detail", method = RequestMethod.GET) 
 	public String getItemDetail(int item_no, Model model) throws Exception {
 		logger.info("(controller)getDetail 실행 " + item_no); 
-		
+		List<ItemOptionVO> itemOp = itemServiceImpl.getItemOption();
+		model.addAttribute("itemOp", itemOp);
 		model.addAttribute("items", itemServiceImpl.getItemDetail(item_no));
+	
 		return "list/itemDetail";
 	}
 	

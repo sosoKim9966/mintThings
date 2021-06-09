@@ -44,7 +44,7 @@
 </nav> <br><br><br>
 
 <div>
-	<h1 align="center" style="font: bold; font-size: 45px; margin-left: -30px;"><a href="/main" style="color:#B2EBF4; text-decoration: none ;">mint Things.</a></h1><br><br><hr> 
+	<h1 align="center" style="font: bold; font-size: 45px; margin-left: -30px;"><a href="/main" style="color:#B2EBF4; text-decoration: none ;">mintThings.</a></h1><br><br><hr> 
 	<div class="container">
 		<div class="row">
         <div>
@@ -53,7 +53,7 @@
             <li style="display: inline-block; margin-right: 130px;"><a href="#" style="color: black;">apple watch</a></li>
             <li style="display: inline-block; margin-right: 130px;"><a href="#" style="color: black;">iphone case</a></li>
             <li style="display: inline-block; margin-right: 130px;"><a href="#" style="color: black;">airpods case</a></li>
-            <li style="display: inline-block; margin-right: 130px;"><a href="#" style="color: black;">etc.</a></li>
+            <li style="display: inline-block; margin-right: 130px;"><a href="/cateList/all" style="color: black;">all</a></li>
           </ul>
         </div>
       </div>

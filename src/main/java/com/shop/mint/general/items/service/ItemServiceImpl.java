@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.mint.general.items.controller.ItemController;
+import com.shop.mint.general.items.domain.ItemOptionVO;
 import com.shop.mint.general.items.domain.ItemVO;
 import com.shop.mint.general.items.mapper.ItemMapper;
 
@@ -32,6 +33,12 @@ public class ItemServiceImpl implements ItemService {
 		logger.info("(service)getCateList 실행"); 
 		return itemMapper.getCateList();
 	}
+	//상품 전체 리스트
+	@Override
+	public List<ItemVO> getAllList() throws Exception {
+		logger.info("(service)getAllList 실행");
+		return itemMapper.getAllList();
+	}
 
 	//총 아이템 갯수 출력
 	@Override
@@ -46,5 +53,13 @@ public class ItemServiceImpl implements ItemService {
 		logger.info("(service)getItemDetail 실행" + item_No); 
 		return itemMapper.getItemDetail(item_No);
 	}
+
+	@Override
+	public List<ItemOptionVO> getItemOption() throws Exception {
+		logger.info("(service)getItemOption 실행");
+		return itemMapper.getItemOption();
+	}
+
+	
 
 }

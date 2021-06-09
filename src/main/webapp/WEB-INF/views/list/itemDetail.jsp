@@ -12,9 +12,20 @@
 </head>
 <style>
 img {
-	width: 400px;
-	height: 400px;
-	margin: 20px 20px 20px 0px;
+	width: 500px;
+	height: 500px;
+	margin: 50px 10px 50px 400px; 
+	display: inline-block;
+	position: relative;
+}
+
+div.col-lg-5 {
+	width: 500px;
+	display: inline-block;	
+	position: relative;
+	float: right;
+	margin-top: -570px;
+	margin-right: 450px;
 }
 </style>
 <body>
@@ -24,30 +35,30 @@ img {
  	<!-- Start Content-->
 		<div class="container-fluid">
 			<div class="row">
-				
-					<div class="row justify-content-center">
-						
-							<div id="product-carousel" class="carousel slide product-detail-carousel" data-bs-ride="carousel">
-								<div class="carousel-inner">
-									<div class="carousel-item active">
-										<div>
-											<img src="../resources/images/items/${items.item_Image }" alt="product-img" class="img-fluid">
-										</div>
-									</div>
+				<div class="row justify-content-center">
+					<div id="product-carousel" class="carousel slide product-detail-carousel" data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<div>
+									<img src="../resources/images/items/${items.item_Image }" alt="product-img" class="img-fluid">
 								</div>
 							</div>
-						
+						</div>
 					</div>
-				
-				<div class="col-lg-7"> 
-				<h4 class="mb-1"><c:out value="${items.item_Name}"/></h4>
-
+				</div>
+				<div class="col-lg-5"> 
+				<h3 class="mb-1">
+					<c:out value="${items.item_Name}"/>
+				</h3>
+				<h5>
+					<c:out value="${items.item_Content}"/>
+				</h5>
+				<hr/>
 				<div class="mt-3">
-					<h4>판매가 : <span class="text-muted me-2"><del>${items.item_Price}</del></span><br>
-					<b> 할인 판매가 : ${items.item_Sale_Price } (할인)</b></h4>
+					<h5>판매가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-muted me-2"><del><fmt:formatNumber value="${items.item_Price}"/>원</del></span><br><br>
+					<b> 할인 판매가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${items.item_Sale_Price}"/>원 (<fmt:formatNumber value="${items.item_Price-items.item_Sale_Price}"/>원 할인)</b></h5>
 				</div>
 				<hr/>
-
 			<div>
 			<form class="d-flex flex-wrap align-items-center mb-3">
 				<label class="my-1 me-2" for="quantityinput">기종</label>
@@ -61,38 +72,37 @@ img {
 							<option value="6">6</option>
 							<option value="7">7</option>
 						</select>
-					</div>
-				<label class="my-1 me-2" for="sizeinput">사이즈</label>
-				<div class="me-sm-3">
-					<select class="form-select my-1" id="sizeinput">
-						<option selected>Small</option>
-						<option value="1">Medium</option>
-						<option value="2">Large</option>
-						<option value="3">X-large</option>
-					</select>
-				</div>
+					</div><hr/>
 				<label class="my-1 me-2" for="sizeinput">색상</label>
 				<div class="me-sm-3">
-					<select class="form-select my-1" id="sizeinput">
-						<option selected>Small</option>
-						<option value="1">화이트</option>
-						<option value="2">블랙</option>
-						<option value="3">레드</option>
-					</select>
-				</div>
-				<label class="my-1 me-2" for="sizeinput">dd</label>
+							<select class="form-select my-1" id="sizeinput">
+								<%-- <c:forEach var="itemOp" items="itemOp">
+									<option value="${itemOp.item_Color_Ip}">${itemOp.item_Color_Ip}</option>
+								</c:forEach> --%>
+							</select>
+				</div><hr/>
+				<label class="my-1 me-2" for="sizeinput">수량</label>
 				<div class="me-sm-3">
-					<select class="form-select my-1" id="sizeinput">
-						<option selected>Small</option>
-						<option value="1">화이트</option>
-						<option value="2">블랙</option>
-						<option value="3">레드</option> 
-					</select>
-				</div>
+					<input type="number" class="numBox" min="1" max="${items.item_Stock}" value="1" readonly="readonly"/>
+					<button type="button" class="plus">+</button>
+					<button type="button" class="minus">-</button>
+				</div><hr/>
+				<div class="mt-3">
+					<b>총 상품 금액&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${items.item_Price}"/>원</b>
+				</div>		
+				
 			</form>
-			<div>
-				<button type="button" class="btn btn-success waves-effect waves-light">
-					<span class="btn-label"><i class="mdi mdi-cart"></i></span>Add to cart
+			<br>
+			<div style="margin-top: 10px;">
+				<button type="button" class="btn btn-link" style="width: 230px; border: solid 1px #BDBDBD; color: black; text-decoration: none ;">
+					<span class="btn-label"><i class="mdi mdi-cart"></i></span>ADD TO CART
+				</button>
+				<button type="button" class="btn btn-link" style="width: 230px; border: solid 1px #BDBDBD; color: black; text-decoration: none ;">
+					<span class="btn-label"><i class="mdi mdi-cart"></i></span>WISH LIST
+				</button>
+				<br>
+				<button type="button" class="btn btn-link" style="width: 465px; margin-top: 10px; border: solid 1px #5CD1E5; color: black; text-decoration: none ;">
+					<span class="btn-label"><i class="mdi mdi-cart"></i></span>BUY IT NOW
 				</button>
 			</div>
 		</div>
@@ -102,9 +112,32 @@ img {
 </div> <!-- container -->
 </div> <!-- content -->
 
-
-
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<script>
+  $(".plus").click(function(){
+   var num = $(".numBox").val();
+   var plusNum = Number(num) + 1;
+   
+   if(plusNum >= ${items.item_Stock}) {
+    $(".numBox").val(num);
+   } else {
+    $(".numBox").val(plusNum);          
+   }
+  });
+  
+  $(".minus").click(function(){
+   var num = $(".numBox").val();
+   var minusNum = Number(num) - 1;
+   
+   if(minusNum <= 0) {
+    $(".numBox").val(num);
+   } else {
+    $(".numBox").val(minusNum);          
+   }
+  });
+ </script>
 
 </body>
 </html>

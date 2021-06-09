@@ -32,9 +32,9 @@ div.content-page {
         <div class="content">
             <!-- Start Content--> <!-- 1, 5, 10 마다 " style="margin-left: 105px;" -->
             <div class="container-fluid">
-                <h3 style="text-align: center; color: #3DB7CC;">WEEKLY BEST</h3>
+                <h3 style="text-align: center; color: #3DB7CC;">WEEKLY BEST</h3><br>
 	                <div class="row">
-                		<c:forEach var="items" items="${items}">
+                		<c:forEach var="items" items="${items}" end="9">
 		                    <div class="col-sm-2">
 		                        <div class="card product-box">
 		                            <div class="product-img">

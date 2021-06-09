@@ -6,10 +6,9 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>mintThings</title>
+  <title>민트띵스</title>
   
-  
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"> -->
   <link rel="stylesheet" href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" style="text/css" href="/resources/static/css/footer.css"/>
@@ -23,8 +22,8 @@
         apply the skin class to the body tag so the changes take effect. 
   <link rel="stylesheet" href="<c:url value='/resources/dist/css/skins/skin-blue.min.css' />">-->
 
-  <!-- Google Font
-  <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" /> -->
+  
+  <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
 </head>
 <body>
 <!-- header -->

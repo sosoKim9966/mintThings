@@ -25,6 +25,18 @@
 		ORDER BY item_name DESC
 	</select>
 	
+	<!-- 상품 전체 리스트 -->					
+	<select id="getAllList" resultType="com.shop.mint.general.items.domain.ItemVO">
+		SELECT 
+			item_no, 
+			item_image,
+			item_name,
+			item_price
+		FROM
+			items
+		ORDER BY item_name DESC
+	</select>
+	
 	<!-- 총 아이템 갯수 출력  -->
 	<select id="countItems" resultType="int">
 		SELECT COUNT(*) FROM items
@@ -39,10 +51,19 @@
 			item_price, 
 			item_sale_price, 
 			item_content,
-			item_category
+			item_category, 
+			item_stock
 		FROM
 			items
 		WHERE item_no = #{item_No}
 	</select>
 
+	<!-- 아이템 상세 아이템 옵션 -->					
+	<select id="getItemOption" resultType="com.shop.mint.general.items.domain.ItemOptionVO">
+		SELECT 
+			item_model, 
+			item_color_ip
+		FROM
+			item_option_ipcase
+	</select>
 </mapper>

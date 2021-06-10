@@ -30,4 +30,7 @@ public interface ItemMapper {
 	
 	//아이템 상세 - 아이템 옵션
 	public List<ItemOptionVO> getItemOption() throws Exception; 
+	
+	//아이템 등록
+	public void itemRegister(ItemVO itemVO);
 }

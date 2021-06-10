@@ -66,4 +66,27 @@
 		FROM
 			item_option_ipcase
 	</select>
+	
+	<!-- 아이템 등록 -->
+	<insert id="itemRegister">
+		INSERT INTO items(item_name, item_content, item_price, item_sale_price, item_stock, item_refundYn, item_Image)
+		VALUES(#{item_name},#{item_content},#{item_price},#{item_sale_price},#{item_stock},#{item_refundYn},#{item_Image})
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

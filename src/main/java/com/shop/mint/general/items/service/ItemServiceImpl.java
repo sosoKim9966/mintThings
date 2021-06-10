@@ -53,13 +53,22 @@ public class ItemServiceImpl implements ItemService {
 		logger.info("(service)getItemDetail 실행" + item_No); 
 		return itemMapper.getItemDetail(item_No);
 	}
-
+	
+	//아이템 상세 - 아이템 옵션
 	@Override
 	public List<ItemOptionVO> getItemOption() throws Exception {
 		logger.info("(service)getItemOption 실행");
 		return itemMapper.getItemOption();
 	}
 
+	//아이템 등록
+	@Override
+	public void itemRegister(ItemVO itemVO) throws Exception {
+		logger.info("(service)itemRegister 실행");
+		itemMapper.itemRegister(itemVO);
+	}
+	
+	
 	
 
 }

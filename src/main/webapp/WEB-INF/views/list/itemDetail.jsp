@@ -29,7 +29,7 @@ div.col-lg-5 {
 }
 </style>
 <body>
-
+<!-- 카테고리 넘버에 따라 보여주는 페이지가 다름 넘겨받은 값에 따라 item_Category == 200 , item_Category -->
 <div class="content-page">
 	<div class="content">
  	<!-- Start Content-->
@@ -57,29 +57,28 @@ div.col-lg-5 {
 				<div class="mt-3">
 					<h5>판매가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-muted me-2"><del><fmt:formatNumber value="${items.item_Price}"/>원</del></span><br><br>
 					<b> 할인 판매가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${items.item_Sale_Price}"/>원 (<fmt:formatNumber value="${items.item_Price-items.item_Sale_Price}"/>원 할인)</b></h5>
+							<%-- <c:out value="${itemOp.item_Model}"/> --%>
 				</div>
 				<hr/>
 			<div>
 			<form class="d-flex flex-wrap align-items-center mb-3">
 				<label class="my-1 me-2" for="quantityinput">기종</label>
 					<div class="me-sm-3">
-						<select class="form-select my-1" id="quantityinput">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
+						<select name="beforeAuth" >
+							<option value="selectModel">기종을 선택하세요.</option>
+								<c:forEach items="${itemOp}" var="itemOp">
+									<option value="${itemOp.item_Model}">${itemOp.item_Model }</option>
+								</c:forEach>
 						</select>
 					</div><hr/>
 				<label class="my-1 me-2" for="sizeinput">색상</label>
 				<div class="me-sm-3">
-							<select class="form-select my-1" id="sizeinput">
-								<%-- <c:forEach var="itemOp" items="itemOp">
-									<option value="${itemOp.item_Color_Ip}">${itemOp.item_Color_Ip}</option>
-								</c:forEach> --%>
-							</select>
+						<select name="beforeAuth" >
+							<option value="selectColor">색상을 선택하세요.</option>
+								<c:forEach items="${itemOp}" var="itemOp">
+									<option value="${itemOp.item_Color_Ip}">${itemOp.item_Color_Ip }</option>
+								</c:forEach>
+						</select>
 				</div><hr/>
 				<label class="my-1 me-2" for="sizeinput">수량</label>
 				<div class="me-sm-3">
@@ -87,7 +86,7 @@ div.col-lg-5 {
 					<button type="button" class="plus">+</button>
 					<button type="button" class="minus">-</button>
 				</div><hr/>
-				<div class="mt-3">
+				<div class="mt-3" id="total_Item_Price">
 					<b>총 상품 금액&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${items.item_Price}"/>원</b>
 				</div>		
 				
@@ -136,6 +135,27 @@ div.col-lg-5 {
    } else {
     $(".numBox").val(minusNum);          
    }
+  });
+
+<%--   if(!id.equals("NOT")) { %>
+	구매수량 : <input type="text" id="buy_count" size="4" name="buy_count" value="1"> 권
+	<b><font color="red"><label id="totalAmount"></label></font></b>
+	<input type="hidden" name="book_id" 	value="<%=book_id %>"/>
+	<input type="hidden" name="book_image" 	value="<%=book.getBook_image() %>"/>
+	<input type="hidden" name="book_title"	value="<%=book.getBook_title() %>"/>
+	<input type="hidden" name="buy_price" 	value="<%=buy_price %>"/>
+	<input type="hidden" name="book_kind" 	value="<%=book.getBook_kind() %>"/>
+	<input type="submit" class="btn btn-warning btn-sm" value="장바구니에 담기"/> 
+<%}
+} %>
+
+ --%>  
+  
+  var $input = $('.numBox');
+  $(".numBox").on('input', function() {
+  	
+  		$('.numBox').text("총구매가 : " + (Number(${items.item_Sale_Price}) * Number($('.numBox').val())).toLocaleString() + "원");
+  
   });
  </script>
 

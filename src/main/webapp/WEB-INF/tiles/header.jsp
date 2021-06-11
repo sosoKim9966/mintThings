@@ -33,7 +33,10 @@
         <a class="nav-link" href="#" style="color: black; margin-right: 20px;">마이페이지</a>
       </li> 
       <li class="nav-item">
-        <a class="nav-link" href="#" style="color: black;">게시판</a>
+        <a class="nav-link" href="#" style="color: black; margin-right: 20px;">게시판</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/items/register" style="color: black;">상품등록</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-md-0">

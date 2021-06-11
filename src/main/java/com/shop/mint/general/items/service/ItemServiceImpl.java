@@ -61,12 +61,12 @@ public class ItemServiceImpl implements ItemService {
 		return itemMapper.getItemOption();
 	}
 
-	//아이템 등록
 	@Override
-	public void itemRegister(ItemVO itemVO) throws Exception {
-		logger.info("(service)itemRegister 실행");
-		itemMapper.itemRegister(itemVO);
+	public int insertItem(ItemVO itemVO) throws Exception {
+		logger.info("(service)getItemOption 실행");
+		return itemMapper.insertItem(itemVO);
 	}
+
 	
 	
 	

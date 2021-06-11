@@ -14,7 +14,7 @@ public interface ItemService {
 	public List<ItemVO> getCateList() throws Exception;
 	
 	//상품 전체 리스트
-	public List<ItemVO> getAllList() throws Exception;
+	public List<ItemVO> getAllList() throws Exception; 
 	
 	//총 아이템 갯수 출력
 	public int getCountItems();
@@ -29,5 +29,5 @@ public interface ItemService {
 	public List<ItemOptionVO> getItemOption() throws Exception; 
 	
 	//아이템 등록
-	public void itemRegister(ItemVO itemVO) throws Exception;
+	public int insertItem(ItemVO itemVO) throws Exception;
 }

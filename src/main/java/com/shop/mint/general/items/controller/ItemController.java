@@ -1,7 +1,15 @@
 package com.shop.mint.general.items.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +20,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.JsonObject;
 import com.shop.mint.general.items.domain.ItemOptionVO;
 import com.shop.mint.general.items.domain.ItemVO;
 import com.shop.mint.general.items.mapper.ItemMapper;
@@ -77,24 +88,40 @@ public class ItemController {
 	public String getItemDetail(int item_no, Model model) throws Exception {
 		logger.info("(controller)getDetail 실행 item_no => " + item_no); 
 		List<ItemOptionVO> itemOp = itemServiceImpl.getItemOption();
-		model.addAttribute("itemOp", itemOp);
+		Set<ItemOptionVO> set = new HashSet<ItemOptionVO>(itemOp);
+		logger.info("(controller)중복행 제거 시작 "); 
+		List<ItemOptionVO> newitemOp =new ArrayList<ItemOptionVO>(set);
+
+		model.addAttribute("itemOp", newitemOp);
 		model.addAttribute("items", itemServiceImpl.getItemDetail(item_no));
 	
 		return "list/itemDetail";
 	}
 	
 	//아이템 등록
-	@PostMapping("/item/register")
-	public String itemRegister(ItemVO itemVO, RedirectAttributes rttr) throws Exception {
+//	@RequestMapping(value = "/items/register", method = RequestMethod.GET) 
+//	public String itemRegister() throws Exception {
+//		logger.info("(controller)itemRegister 실행 ");
+////		itemServiceImpl.itemRegister(itemVO);
+////		rttr.addFlashAttribute("register_result", itemVO.getItem_Name());
+//		
+////		return "redirect:/admin/itemsManager";
+//		return "items/itemsRegister";
+//	}
+	
+	@GetMapping("/items/register")
+	public String itemRegister() throws Exception {
 		logger.info("(controller)itemRegister 실행 ");
-		itemServiceImpl.itemRegister(itemVO);
-		rttr.addFlashAttribute("register_result", itemVO.getItem_Name());
-		
-		return "redirect:/admin/itemsManager";
-		
+		return "items/itemsRegister";
 	}
-
-
+	
+	@PostMapping("/items/register")
+	public String viewRegister(ItemVO itemVO) throws Exception {
+		logger.info("(controller)itemRegister 실행 " + itemVO.getItem_No());
+		itemServiceImpl.insertItem(itemVO);
+		return "redirect: /items/detail?item_no=" + itemVO.getItem_No();
+	}
+	
 
 
 }

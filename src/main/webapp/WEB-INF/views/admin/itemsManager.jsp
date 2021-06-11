@@ -14,7 +14,7 @@
     <div class="content-page">
         <div class="content">
             <div class="admin_content_main">
-               	<form action="/admin/goodsEnroll" method="post" id="enrollForm">
+               	<form action="/admin/goodsEnroll" method="post" id="registerForm">
                		<div class="form_section">
                			<div class="form_section_title">
                				<label>아이템 카테고리</label>
@@ -25,47 +25,47 @@
                		</div>
                		<div class="form_section">
                			<div class="form_section_title">
-               				<label>아이템 </label>
+               				<label>아이템 이름</label>
                			</div>
                			<div class="form_section_content">
-               				<input name="bookName">
+               				<input name="item_Name">
                			</div>
                		</div>
                		<div class="form_section">
                			<div class="form_section_title">
-               				<label>작가</label>
+               				<label>아이템 내용</label>
                			</div>
                			<div class="form_section_content">
-               				<input name="authorId" value="0">
+               				<input name="item_Content">
                			</div>
                		</div>            
                		<div class="form_section">
                			<div class="form_section_title">
-               				<label>출판일</label>
+               				<label>아이템 가격</label>
                			</div>
                			<div class="form_section_content">
-               				<input name="publeYear">
+               				<input name="item_Price">
                			</div>
                		</div>            
                		<div class="form_section">
                			<div class="form_section_title">
-               				<label>출판사</label>
+               				<label>아이템 세일 가격</label>
                			</div>
                			<div class="form_section_content">
-               				<input name="publisher">
+               				<input name="item_Sale_Price">
                			</div>
                		</div>             
                		<div class="form_section">
                			<div class="form_section_title">
-               				<label>책 카테고리</label>
+               				<label>아이템 재고</label>
                			</div>
                			<div class="form_section_content">
-               				<input name="cateCode">
+               				<input name="item_Stock">
                			</div>
                		</div>          
-               		<div class="form_section">
+<!--                		<div class="form_section">
                			<div class="form_section_title">
-               				<label>상품 가격</label>
+               				<label></label>
                			</div>
                			<div class="form_section_content">
                				<input name="bookPrice" value="0">
@@ -103,7 +103,7 @@
                				<input name="bookContents">
                			</div>
                		</div>
-              	</form>
+ -->              	</form>
 	       		<div class="btn_section">
 	       			<button id="cancelBtn" class="btn">취 소</button>
 	         		<button id="enrollBtn" class="btn enroll_btn">등 록</button>

@@ -2,6 +2,7 @@ package com.shop.mint.jwtConfig;
 
 import com.shop.mint.general.login.service.LoginService;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import java.net.Authenticator;
 import java.util.Base64;
 import java.util.Date;
@@ -70,12 +72,63 @@ public class JwtTokenProvider {
      * @author "윤철규(hash)"
      * @History :
      * @Description : JWT 토큰에서 인증 정보 조회
-     * </pre>
+    * </pre>
      *
      * @return
      */
     public Authentication getAuthentication(String token) {
         return null;
+    }
+
+    /**
+     *
+     * <pre>
+     * @Date : 2021-06-11
+     * @author "윤철규(hash)"
+     * @History :
+     * @Description : 회원 정보 추출
+     * </pre>
+     *
+     * @return
+     */
+    public String getUserPk(String token) {
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+    }
+
+    /**
+     *
+     * <pre>
+     * @Date : 2021-06-11
+     * @author "윤철규(hash)"
+     * @History :
+     * @Description : Request의 Header에서 token 가져오기
+     * </pre>
+     *
+     * @param request
+     * @return
+     */
+    public String resolveToken(HttpServletRequest request) {
+        return request.getHeader("X-AUTH-TOKEN");
+    }
+
+    /**
+     *
+     * <pre>
+     * @Date : 2021-06-11
+     * @author "윤철규(hash)"
+     * @History :
+     * @Description : 토큰 유효성 / 만료일자 확인
+     * </pre>
+     *
+     * @return
+     */
+    public boolean validateToken(String jwtToken) {
+        try {
+            Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
+            return !claims.getBody().getExpiration().before(new Date());
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 

@@ -24,5 +24,9 @@ public class AuthController {
         return null;
     }
 
+    @PostMapping("/join")
+    public String join(@RequestBody Map<String, String> user) {
+        return null;
+    }
 
 }

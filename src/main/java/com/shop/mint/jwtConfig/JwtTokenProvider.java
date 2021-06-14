@@ -6,7 +6,10 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -24,7 +27,7 @@ public class JwtTokenProvider {
 
     // 토큰 유효시간 30분
     private long tokenValidTime = 30 * 60 * 1000L;
-    private final LoginService loginService;
+    private final UserDetailsService userDetailsService;
 
     /**
      *
@@ -77,7 +80,8 @@ public class JwtTokenProvider {
      * @return
      */
     public Authentication getAuthentication(String token) {
-        return null;
+        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
     /**

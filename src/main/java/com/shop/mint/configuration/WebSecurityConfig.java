@@ -44,6 +44,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+    	http.cors().and();
+    	http.csrf().disable();
         http.httpBasic()
                 .disable() // rest api 만을 고려하여 기본 설정은 해제하겠습니다.
                 .csrf().disable() // csrf 보안 토큰 disable처리.

@@ -51,7 +51,7 @@
 			item_price, 
 			item_sale_price, 
 			item_content,
-			item_category, 
+			item_category_name, 
 			item_stock
 		FROM
 			items
@@ -68,12 +68,12 @@
 	</select>
 	
 	<!-- 아이템 등록 -->
-	<insert id="itemRegister">
-		INSERT INTO items(item_name, item_content, item_price, item_sale_price, item_stock, item_refundYn, item_Image)
-		VALUES(#{item_name},#{item_content},#{item_price},#{item_sale_price},#{item_stock},#{item_refundYn},#{item_Image})
+ 	<insert id="insertItem" parameterType="com.shop.mint.general.items.domain.ItemOptionVO">
+		INSERT INTO items(item_category_name, item_name, item_price, item_sale_price, item_stock, item_refund_yn, item_content)
+		VALUES(#{item_Category_Name}, #{item_Name}, #{item_Price}, #{item_Sale_Price}, #{item_Stock}, #{item_RefundYn}, #{item_Content})
 	</insert>
 	
-	
+
 	
 	
 	

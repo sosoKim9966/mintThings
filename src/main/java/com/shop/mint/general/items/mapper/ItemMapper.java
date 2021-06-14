@@ -32,5 +32,5 @@ public interface ItemMapper {
 	public List<ItemOptionVO> getItemOption() throws Exception; 
 	
 	//아이템 등록
-	public void itemRegister(ItemVO itemVO);
+	public int insertItem(ItemVO itemVO);
 }

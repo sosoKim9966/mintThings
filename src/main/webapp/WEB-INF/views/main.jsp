@@ -93,6 +93,7 @@ div.content-page {
 			                        </div>
 			                    </div>
 	                		</c:forEach>
+	                		<input type="button" value="상품등록" onclick="location.href='/write'">
 		                </div>
             	</div> <!-- container -->
         </div> <!-- content -->

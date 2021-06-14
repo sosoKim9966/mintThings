@@ -17,28 +17,8 @@
 <!-- include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script>
 <title>아이템 등록하기</title>
-</head>
-<body>
-<h2 style="text-align: center;">아이템 등록</h2><br><br><br>
-
-<div style="width: 60%; margin: auto;">
-	<form method="post" action="/items/register">
-		<input type="text" name="item_Category_Name" style="width: 20%; margin-bottom: 5px;" placeholder="아이템 카테고리 이름"/><br>
-		<input type="text" name="item_Name" style="width: 20%; margin-bottom: 5px;" placeholder="아이템 이름"/><br>
-		<input type="text" name="item_Price" style="width: 20%; margin-bottom: 5px;" placeholder="아이템 가격"/><br>
-		<input type="text" name="item_Sale_Price" style="width: 20%; margin-bottom: 5px;" placeholder="아이템 세일가격"/><br>
-		<input type="text" name="item_Stock" style="width:  20%; margin-bottom: 5px;" placeholder="아이템 재고"/><br>
-		<input type="text" name="item_RefundYn" style="width: 20%; margin-bottom: 5px;" placeholder="아이템 환불 여부('N', 'Y')"/><br>
-		<br><br> 
-		<textarea id="summernote" name="item_Content"></textarea>
-		<input id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/>
-	</form>
-</div>
-<br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br>
-    
 <script>
-function goWrite(frm) {
+/* function goWrite(frm) {
 	var item_Category_Name = frm.item_Category_Name.value;
 	var item_Name = frm.item_Name.value;
 	var item_Price = frm.item_Price.value;
@@ -77,40 +57,81 @@ function goWrite(frm) {
 	}
 	
 	frm.submit();
-}
+} */
 
 
 $(document).ready(function() {
-    $('#summernote').summernote({
-        height: 300,
-        callbacks: {
-            onImageUpload: function(files) {
-                sendFile(files[0]);
-            }
-        }
-    });
 
-    function sendFile(file) {
-        data = new FormData();
-        data.append("file", file);
-        $.ajax({
-            url: 'GetFile.aspx',
-            data: data,
-            cache: false,
-            type: "POST",
-            contentType: false,
-            processData: false,
-            success: function(url) {
-                $('#summernote').summernote('insertImage', url);
+	var toolbar = [
+		    // 글꼴 설정
+		    ['fontname', ['fontname']],
+		    // 글자 크기 설정
+		    ['fontsize', ['fontsize']],
+		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+		    // 글자색
+		    ['color', ['forecolor','color']],
+		    // 표만들기
+		    ['table', ['table']],
+		    // 글머리 기호, 번호매기기, 문단정렬
+		    ['para', ['ul', 'ol', 'paragraph']],
+		    // 줄간격
+		    ['height', ['height']],
+		    // 그림첨부, 링크만들기, 동영상첨부
+		    ['insert',['picture','link','video']],
+		    // 코드보기, 확대해서보기, 도움말
+		    ['view', ['codeview','fullscreen', 'help']]
+		  ];
+
+	var setting = {
+            height : 300,
+            minHeight : null,
+            maxHeight : null,
+            focus : true,
+            lang : 'ko-KR',
+            toolbar : toolbar,
+            callbacks : { //여기 부분이 이미지를 첨부하는 부분
+            onImageUpload : function(files, editor,
+            welEditable) {
+            for (var i = files.length - 1; i >= 0; i--) {
+            uploadSummernoteImageFile(files[i],
+            this);
+            		}
+            	}
             }
-        });
-    }
+         };
+
+        $('#summernote').summernote(setting);
+
 });
 
-function funcMyHtml() {
-    document.getElementById("HiddenField").value = $('#summernote').summernote('code');
+function aa() {
+	$("#frm").attr("action", "/items/ok").submit();
 }
+
 </script>
+</head>
+<body>
+<h2 style="text-align: center;">아이템 등록</h2><br><br><br>
+
+<div style="width: 60%; margin: auto;">
+	<form method="post" id="frm" enctype="multipart/form-data" >
+		<input type="text" name="item_Category_Name" style="width: 20%; margin-bottom: 5px;" placeholder="아이템 카테고리 이름"/><br>
+		<input type="text" name="item_Name" style="width: 20%; margin-bottom: 5px;" placeholder="아이템 이름"/><br>
+		<input type="text" name="item_Price" style="width: 20%; margin-bottom: 5px;" placeholder="아이템 가격"/><br>
+		<input type="text" name="item_Sale_Price" style="width: 20%; margin-bottom: 5px;" placeholder="아이템 세일가격"/><br>
+		<input type="text" name="item_Stock" style="width:  20%; margin-bottom: 5px;" placeholder="아이템 재고"/><br>
+		<input type="text" name="item_RefundYn" style="width: 20%; margin-bottom: 5px;" placeholder="아이템 환불 여부('N', 'Y')"/><br>
+		
+		<br><br> 
+		<textarea rows="5" cols="60" id="summernote" name="item_Content"></textarea>
+		<input type="button" value="글 작성" style="float: right;" onclick="aa();"/>
+	</form>
+</div>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+    
+
     
 </body>
 </html>

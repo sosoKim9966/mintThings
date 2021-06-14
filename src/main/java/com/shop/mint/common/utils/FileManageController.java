@@ -16,6 +16,7 @@ import com.google.gson.JsonObject;
 
 @Controller
 public class FileManageController {
+	
 	@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
 	@ResponseBody
 	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {

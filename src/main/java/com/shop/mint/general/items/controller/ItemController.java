@@ -99,31 +99,20 @@ public class ItemController {
 
 		return "list/itemDetail";
 	}
-
-//	// 아이템 등록
-//	@RequestMapping(value = "/items/register", method = RequestMethod.GET)
-//	public String itemRegister() throws Exception {
-//		logger.info("(controller)itemRegister 실행 ");
-////		itemServiceImpl.itemRegister(itemVO);
-////		rttr.addFlashAttribute("register_result", itemVO.getItem_Name());
-//
-////		return "redirect:/admin/itemsManager";
-//		return "items/itemsRegister";
-//	}
-
-	
-	 @RequestMapping(value="/items/register", method = RequestMethod.GET) 
-
-	 public String insertItem() { 
-		logger.info("test ");
+	 
+	//아이템 등록 GET
+	@RequestMapping(value="/items/register", method = RequestMethod.GET) 
+	public String insertItem() { 
+		logger.info("(controller)insertItem 실행");
 		return "items/itemsRegister"; 
 	}
 	 
-	 @RequestMapping(value="/items/ok", method = RequestMethod.POST ) 
-	 public String itemRegister(MultipartHttpServletRequest request, @ModelAttribute ItemVO itemVO ) throws Exception {
-		 logger.info("(controller)itemRegister 실행 ");
-		 itemServiceImpl.insertItem(itemVO); 
-		 return "redirect:/cateList/all"; 
+	//아이템 등록 POST
+	@RequestMapping(value="/items/ok", method = RequestMethod.POST ) 
+	public String itemRegister(MultipartHttpServletRequest request, @ModelAttribute ItemVO itemVO ) throws Exception {
+		logger.info("(controller)itemRegister 실행 ");
+		itemServiceImpl.insertItem(itemVO); 
+		return "redirect:/cateList/all"; 
 	 }
 	 
 

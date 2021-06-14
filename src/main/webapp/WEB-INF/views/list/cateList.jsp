@@ -34,7 +34,7 @@ div.content-page {
             <div class="container-fluid">
                 <h3 style="text-align: center; color: #3DB7CC;">WEEKLY BEST</h3><br>
 	                <div class="row">
-                		<c:forEach var="items" items="${items}" end="9">
+                		<c:forEach var="items" items="${items}">
 		                    <div class="col-sm-2">
 		                        <div class="card product-box">
 		                            <div class="product-img">

@@ -51,7 +51,7 @@ div.col-lg-5 {
 					<c:out value="${items.item_Name}"/>
 				</h3>
 				<h5>
-					<c:out value="${items.item_Content}"/>
+					${items.item_Content}
 				</h5>
 				<hr/>
 				<div class="mt-3">

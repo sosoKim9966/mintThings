@@ -18,51 +18,10 @@
 <script src="/resources/js/summernote-ko-KR.js"></script>
 <title>아이템 등록하기</title>
 <script>
-/* function goWrite(frm) {
-	var item_Category_Name = frm.item_Category_Name.value;
-	var item_Name = frm.item_Name.value;
-	var item_Price = frm.item_Price.value;
-	var item_Sale_Price = frm.item_Sale_Price.value;
-	var item_Stock = frm.item_Stock.value;
-	var item_RefundYn = frm.item_RefundYn.value;
-	var item_Content = frm.item_Content.value;
-	
-	if (item_Category_Name.trim() == ''){
-		alert("카테고리 이름을 입력해주세요");
-		return false;
-	}
-	if (item_Name.trim() == ''){
-		alert("아이템 이름을 입력해주세요");
-		return false;
-	}
-	if (item_Price.trim() == ''){
-		alert("아이템 가격을 입력해주세요");
-		return false;
-	}
-	if (item_Sale_Price.trim() == ''){
-		alert("아이템 세일 가격을 입력해주세요");
-		return false;
-	}
-	if (item_Stock.trim() == ''){
-		alert("아이템 재고를 입력해주세요");
-		return false;
-	}
-	if (item_RefundYn.trim() == ''){
-		alert("아이템 환불여부를 입력해주세요");
-		return false;
-	}
-	if (item_Content.trim() == ''){
-		alert("아이템 내용을 입력해주세요");
-		return false;
-	}
-	
-	frm.submit();
-} */
-
 
 $(document).ready(function() {
 
-	var toolbar = [
+	/* var toolbar = [
 		    // 글꼴 설정
 		    ['fontname', ['fontname']],
 		    // 글자 크기 설정
@@ -101,11 +60,109 @@ $(document).ready(function() {
             }
          };
 
-        $('#summernote').summernote(setting);
+        $('#summernote').summernote(setting); */
+
+        var toolbar = [
+		    // 글꼴 설정
+		    ['fontname', ['fontname']],
+		    // 글자 크기 설정
+		    ['fontsize', ['fontsize']],
+		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+		    // 글자색
+		    ['color', ['forecolor','color']],
+		    // 표만들기
+		    ['table', ['table']],
+		    // 글머리 기호, 번호매기기, 문단정렬
+		    ['para', ['ul', 'ol', 'paragraph']],
+		    // 줄간격
+		    ['height', ['height']],
+		    // 그림첨부, 링크만들기, 동영상첨부
+		    ['insert',['picture','link','video']],
+		    // 코드보기, 확대해서보기, 도움말
+		    ['view', ['codeview','fullscreen', 'help']]
+		  ];
+
+		$('#summernote').summernote({
+	        minHeight: 500,             // 최소 높이
+	        maxHeight: null,             // 최대 높이
+	        focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+	        lang: "ko-KR",
+	        toolbar : toolbar,					// 한글 설정
+	        spellCheck: false,
+	        callbacks: {	//이미지 첨부하는 부분
+	           onImageUpload : function(files) {
+	                uploadSummernoteImageFile(files[0],this);
+            	}
+        	}
+    	});
+
+        function uploadSummernoteImageFile(file, editor) {
+            data = new FormData();
+            data.append("file", file);
+            $.ajax({
+                data : data,
+                type : "POST",
+                url : "/uploadSummernoteImageFile",
+                contentType : false,
+                processData : false,
+                success : function(data) {
+                    //항상 업로드된 파일의 url이 있어야 한다.
+                    $(editor).summernote('insertImage', data.url);
+                }
+            });
+        }
+
+        $("div.note-editable").on('drop',function(e){
+            for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
+            	uploadSummernoteImageFile(e.originalEvent.dataTransfer.files[i],$("#summernote")[0]);
+            }
+           e.preventDefault();
+      })
 
 });
 
 function aa() {
+		var item_Category_Name = frm.item_Category_Name.value;
+		var item_Name = frm.item_Name.value;
+		var item_Price = frm.item_Price.value;
+		var item_Sale_Price = frm.item_Sale_Price.value;
+		var item_Stock = frm.item_Stock.value;
+		var item_RefundYn = frm.item_RefundYn.value;
+		var item_Content = frm.item_Content.value;
+		
+		if (item_Category_Name.trim() == ''){
+			alert("카테고리 이름을 입력해주세요");
+			return false;
+		}
+		if (item_Name.trim() == ''){
+			alert("아이템 이름을 입력해주세요");
+			return false;
+		}
+		if (item_Price.trim() == ''){
+			alert("아이템 가격을 입력해주세요");
+			return false;
+		}
+		if (item_Sale_Price.trim() == ''){
+			alert("아이템 세일 가격을 입력해주세요");
+			return false;
+		}
+		if (item_Stock.trim() == ''){
+			alert("아이템 재고를 입력해주세요");
+			return false;
+		}
+		if (item_RefundYn.trim() == ''){
+			alert("아이템 환불여부를 입력해주세요");
+			return false;
+		}
+		if (item_Content.trim() == ''){
+			alert("아이템 내용을 입력해주세요");
+			return false;
+		}
+		
+		frm.submit();
+	 
+			
 	$("#frm").attr("action", "/items/ok").submit();
 }
 
@@ -123,9 +180,11 @@ function aa() {
 		<input type="text" name="item_Stock" style="width:  20%; margin-bottom: 5px;" placeholder="아이템 재고"/><br>
 		<input type="text" name="item_RefundYn" style="width: 20%; margin-bottom: 5px;" placeholder="아이템 환불 여부('N', 'Y')"/><br>
 		
-		<br><br> 
-		<textarea rows="5" cols="60" id="summernote" name="item_Content"></textarea>
-		<input type="button" value="글 작성" style="float: right;" onclick="aa();"/>
+		<br><br>
+		<div class="note-editable"> 
+			<textarea rows="5" cols="60" id="summernote" class="summernote" name="item_Content"></textarea>
+			<input type="button" value="글 작성" style="float: right;" onclick="aa();"/>
+		</div>
 	</form>
 </div>
 <br><br><br><br><br><br><br>

@@ -2,5 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.mint.general.auth.mapper.AuthMapper">
 
+    <select id="findByUserId" parameterType="String" resultType="com.shop.mint.general.auth.domain.AuthVO" >
+        SELECT
+            user_no
+            , user_id
+            , user_pw
+            , user_name
+            , user_phone
+            , user_email
+            , user_address1
+            , user_address2
+            , user_regdate
+            , user_delete_yn
+            , user_email_yn
+            , user_grade
+            , role
+        FROM
+            user
+        WHERE
+            user_id = #{userId}
+    </select>
 
 </mapper>

@@ -17,9 +17,9 @@ public class CustomUserDetailService implements UserDetailsService {
    @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
        try {
-           return authMapper.getUserId(userId);
+           return authMapper.findByUserId(userId);
        } catch (UsernameNotFoundException e) {
-           return null;
+           return (UserDetails) new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
        }
     }
 

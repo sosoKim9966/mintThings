@@ -27,6 +27,7 @@ public class AuthVO implements UserDetails {
     private String userDeleteYn;
     private String userEmailYn;
     private String userGrade;
+    private String role;
 
     @Builder.Default
     private List<String> roles = new ArrayList<>();

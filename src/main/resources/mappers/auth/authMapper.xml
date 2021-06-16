@@ -16,7 +16,7 @@
             , user_delete_yn
             , user_email_yn
             , user_grade
-            , roles
+            , role
         FROM
             user
         WHERE
@@ -36,7 +36,7 @@
             , user_delete_yn
             , user_email_yn
             , user_grade
-            , roles
+            , role
         ) VALUES (
             #{userId}
             , #{userPw}
@@ -49,7 +49,7 @@
             , 'Y'
             , 'Y'
             , 'user'
-            , #{roles}
+            , #{role}
         )
     </insert>-->
 

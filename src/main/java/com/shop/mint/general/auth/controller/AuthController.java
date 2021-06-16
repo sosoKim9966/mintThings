@@ -24,15 +24,16 @@ public class AuthController {
         System.out.println("aaaaaaa = "+user.get("userId"));
         AuthVO member = authService.findByUserId(user.get("userId"));
         System.out.println("Bbbbbb = " + member.getUserPw());
-        if (!passwordEncoder.matches(user.get("userPw"), member.getUserPw())) {
-            throw new IllegalArgumentException("잘못된 비밀번호입니다.");
-        }
-        return jwtTokenProvider.createToken(member.getUsername(), member.getRoles());
+//        if (!passwordEncoder.matches(user.get("userPw"), member.getUserPw())) {
+//            throw new IllegalArgumentException("잘못된 비밀번호입니다.");
+//        }
+        System.out.println("member.getRoles() = " + member.getRoles());
+        return jwtTokenProvider.createToken(member.getUserNo().toString(), member.getRoles());
     }
 
     @PostMapping("/join")
-    public String join(@RequestBody Map<String, String> user) {
-        return null;
+    public int join(@RequestBody Map<String, String> user) {
+        return 0;
     }
 
 }

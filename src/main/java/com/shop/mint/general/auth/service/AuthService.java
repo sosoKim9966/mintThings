@@ -16,4 +16,8 @@ public class AuthService {
         return authMapper.findByUserId(userId);
     }
 
+    public int insertJoinUser(AuthVO authVO) {
+        return authMapper.insertJoinUser(authVO);
+    }
+
 }

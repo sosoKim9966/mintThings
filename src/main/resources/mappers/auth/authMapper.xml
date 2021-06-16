@@ -16,11 +16,41 @@
             , user_delete_yn
             , user_email_yn
             , user_grade
-            , role
+            , roles
         FROM
             user
         WHERE
             user_id = #{userId}
     </select>
+
+    <!--<insert id="insertJoinUser" parameterType="com.shop.mint.general.auth.domain.AuthVO">
+        INSERT INTO user(
+            user_id
+            , user_pw
+            , user_name
+            , user_phone
+            , user_email
+            , user_address1
+            , user_address2
+            , user_regdate
+            , user_delete_yn
+            , user_email_yn
+            , user_grade
+            , roles
+        ) VALUES (
+            #{userId}
+            , #{userPw}
+            , #{userName}
+            , #{userPhone}
+            , #{userEmail}
+            , #{userAddress1}
+            , #{userAddress2}
+            , now()
+            , 'Y'
+            , 'Y'
+            , 'user'
+            , #{roles}
+        )
+    </insert>-->
 
 </mapper>

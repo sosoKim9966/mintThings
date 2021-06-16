@@ -10,5 +10,7 @@ public interface AuthMapper {
 
     public AuthVO findByUserId(String userId);
 
+    public int insertJoinUser(AuthVO authVO);
+
 
 }

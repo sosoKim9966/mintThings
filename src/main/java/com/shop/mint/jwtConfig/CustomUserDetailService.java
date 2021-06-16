@@ -19,7 +19,7 @@ public class CustomUserDetailService implements UserDetailsService {
        try {
            return authMapper.findByUserId(userId);
        } catch (UsernameNotFoundException e) {
-           return null;
+           return (UserDetails) new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
        }
     }
 

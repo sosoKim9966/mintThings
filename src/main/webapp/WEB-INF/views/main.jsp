@@ -42,14 +42,14 @@ div.content-page {
 		                                	<a href="/items/detail?item_no=${items.item_No}" class="move">
 		                                    <img src="../resources/images/items/${items.item_Image }" class="img-fluid" style=""/></a>
 		                                </div>
-		                                <!-- 관리자 페이지만 보이게 하기
-		                                <div class="product-action">
-		                                    <div class="d-flex">
-		                                        <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-edit-2-fill align-middle"></i> Edit</a>
-		                                        <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-delete-bin-fill align-middle"></i> Delete</a>
-		                                    </div>
-		                                </div>
-		                                -->
+		                                <form id="form1" name="form1" enctype="multipart/form-data" method="post">
+			                                <div class="product-action">
+			                                    <div class="d-flex" style="margin-bottom: -5px; margin-left: 18px;">
+			                                        <a href="/items/update/${items.item_No}" class="btn btn-white d-block w-100 action-btn m-2">Edit</a>
+			                                        <a href="/items/delete/${items.item_No}" id="deleteBtn" class="btn btn-white d-block w-100 action-btn m-2">Delete</a>
+			                                    </div>
+			                                </div>
+		                                </form>
 		                            </div> 
 		                            <div class="product-info border-top p-3">
 		                                <div>
@@ -73,14 +73,12 @@ div.content-page {
 			                                	<a href="/items/detail?item_no=${items.item_No}" class="move">
 			                                    <img src="../resources/images/items/${items.item_Image }" class="img-fluid" style=""/></a>
 			                                </div>
-			                                <!-- 관리자 페이지만 보이게 하기
 			                                <div class="product-action">
-			                                    <div class="d-flex">
-			                                        <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-edit-2-fill align-middle"></i> Edit</a>
-			                                        <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-delete-bin-fill align-middle"></i> Delete</a>
+			                                    <div class="d-flex" style="margin-bottom: -5px; margin-left: 18px;">
+			                                        <a href="/items/update/${items.item_No}" class="btn btn-white d-block w-100 action-btn m-2">Edit</a>
+			                                    	<a href="/items/delete/${items.item_No}" id="deleteBtn" class="btn btn-white d-block w-100 action-btn m-2">Delete</a>
 			                                    </div>
 			                                </div>
-			                                -->
 			                            </div> 
 			                            <div class="product-info border-top p-3">
 			                                <div>
@@ -93,7 +91,6 @@ div.content-page {
 			                        </div>
 			                    </div>
 	                		</c:forEach>
-	                		<input type="button" value="상품등록" onclick="location.href='/write'">
 		                </div>
             	</div> <!-- container -->
         </div> <!-- content -->
@@ -103,6 +100,7 @@ div.content-page {
     <!-- End Page content -->
     <!-- ============================================================== -->
 <script>
+
 </script>    
 </body>
 </html>

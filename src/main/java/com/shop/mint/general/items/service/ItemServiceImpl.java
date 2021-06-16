@@ -51,6 +51,7 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public ItemVO getItemDetail(int item_No) throws Exception {
 		logger.info("(service)getItemDetail 실행" + item_No); 
+		
 		return itemMapper.getItemDetail(item_No);
 	}
 	
@@ -61,10 +62,25 @@ public class ItemServiceImpl implements ItemService {
 		return itemMapper.getItemOption();
 	}
 
+	//아이템 등록
 	@Override
 	public int insertItem(ItemVO itemVO) throws Exception {
 		logger.info("(service)getItemOption 실행");
 		return itemMapper.insertItem(itemVO);
+	}
+
+	//아이템 수정
+	@Override
+	public int updateItem(ItemVO itemVO) throws Exception {
+		logger.info("(service)deleteItem 실행");
+		return itemMapper.updateItem(itemVO);
+	}
+	
+	//아이템 삭제
+	@Override
+	public void deleteItem(int item_No) throws Exception {
+		logger.info("(service)deleteItem 실행");
+		itemMapper.deleteItem(item_No);
 	}
 
 	

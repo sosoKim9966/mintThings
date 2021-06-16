@@ -30,4 +30,10 @@ public interface ItemService {
 	
 	//아이템 등록
 	public int insertItem(ItemVO itemVO) throws Exception;
+	
+	//아이템 수정
+	public int updateItem(ItemVO itemVO) throws Exception;
+	
+	//아이템 삭제
+	public void deleteItem(int item_No) throws Exception;
 }

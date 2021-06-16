@@ -73,7 +73,18 @@
 		VALUES(#{item_Category_Name}, #{item_Name}, #{item_Price}, #{item_Sale_Price}, #{item_Stock}, #{item_RefundYn}, #{item_Content})
 	</insert>
 	
-
+	<!-- 아이템 수정 -->
+	<update id="updateItem" >
+		UPDATE items SET item_category_name = #{item_Category_Name}, item_name = #{item_Name}, item_content = #{item_Content}, item_price = #{item_Price}, item_sale_price = #{item_Sale_Price}, 
+						 item_stock = #{item_Stock}, item_refund_yn = #{item_RefundYn}
+		WHERE item_no = #{item_No}
+	</update>
+	
+	<!-- 아이템 삭제 -->
+	<delete id="deleteItem" parameterType="com.shop.mint.general.items.domain.ItemVO">
+		DELETE FROM items
+		WHERE item_no = #{item_No}
+	</delete>
 	
 	
 	

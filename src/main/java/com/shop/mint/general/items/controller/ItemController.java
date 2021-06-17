@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -99,32 +100,39 @@ public class ItemController {
 
 		return "list/itemDetail";
 	}
-
-//	// 아이템 등록
-//	@RequestMapping(value = "/items/register", method = RequestMethod.GET)
-//	public String itemRegister() throws Exception {
-//		logger.info("(controller)itemRegister 실행 ");
-////		itemServiceImpl.itemRegister(itemVO);
-////		rttr.addFlashAttribute("register_result", itemVO.getItem_Name());
-//
-////		return "redirect:/admin/itemsManager";
-//		return "items/itemsRegister";
-//	}
-
-	
-	 @RequestMapping(value="/items/register", method = RequestMethod.GET) 
-
-	 public String insertItem() { 
-		logger.info("test ");
+	 
+	//아이템 등록 GET
+	@RequestMapping(value="/items/register", method = RequestMethod.GET) 
+	public String insertItem() { 
+		logger.info("(controller)insertItem 실행");
 		return "items/itemsRegister"; 
 	}
 	 
-	 @RequestMapping(value="/items/ok", method = RequestMethod.POST ) 
-	 public String itemRegister(MultipartHttpServletRequest request, @ModelAttribute ItemVO itemVO ) throws Exception {
-		 logger.info("(controller)itemRegister 실행 ");
-		 itemServiceImpl.insertItem(itemVO); 
-		 return "redirect:/cateList/all"; 
+	//아이템 등록 POST
+	@RequestMapping(value="/items/ok", method = RequestMethod.POST ) 
+	public String itemRegister(MultipartHttpServletRequest request, @ModelAttribute ItemVO itemVO ) throws Exception {
+		logger.info("(controller)itemRegister 실행 ");
+		itemServiceImpl.insertItem(itemVO); 
+		return "redirect:/cateList/all"; 
 	 }
 	 
+	//아이템 수정
+	@RequestMapping(value="items/update/{item_No}")
+	public String itemUpdate(ItemVO itemVO, Model model) throws Exception {
+		logger.info("(controller)itemUpdate 실행" + itemVO);
+		List<ItemVO> items = itemServiceImpl.getMainList();
+		model.addAttribute("items", items);
+		itemServiceImpl.updateItem(itemVO);
+		return "items/itemsRegister";
+	}
+	
+	
+	//아이템 삭제 
+	@RequestMapping("/items/delete/{item_No}")
+	public String itemDelete(@PathVariable int item_No) throws Exception{
+		logger.info("(controller)itemDelete 실행 ");
+		itemServiceImpl.deleteItem(item_No);
+		return "redirect:/cateList/all";
+	}
 
 }

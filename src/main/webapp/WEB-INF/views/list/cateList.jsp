@@ -34,7 +34,7 @@ div.content-page {
             <div class="container-fluid">
                 <h3 style="text-align: center; color: #3DB7CC;">WEEKLY BEST</h3><br>
 	                <div class="row">
-                		<c:forEach var="items" items="${items}" end="9">
+                		<c:forEach var="items" items="${items}">
 		                    <div class="col-sm-2">
 		                        <div class="card product-box">
 		                            <div class="product-img">
@@ -42,14 +42,12 @@ div.content-page {
 		                                	<a href="/items/detail?item_no=${items.item_No}" class="move">
 		                                    <img src="../resources/images/items/${items.item_Image }" class="img-fluid" style=""/></a>
 		                                </div>
-		                                <!-- 관리자 페이지만 보이게 하기
-		                                <div class="product-action">
-		                                    <div class="d-flex">
-		                                        <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-edit-2-fill align-middle"></i> Edit</a>
-		                                        <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-delete-bin-fill align-middle"></i> Delete</a>
+		                               	<div class="product-action">
+		                                    <div class="d-flex" style="margin-bottom: -5px; margin-left: 18px;">
+		                                        <a href="/items/update/${items.item_No}" class="btn btn-white d-block w-100 action-btn m-2">Edit</a>
+		                                    	<a href="/items/delete/${items.item_No}" id="deleteBtn" class="btn btn-white d-block w-100 action-btn m-2">Delete</a>
 		                                    </div>
 		                                </div>
-		                                -->
 		                            </div> 
 		                            <div class="product-info border-top p-3">
 	                                <div>

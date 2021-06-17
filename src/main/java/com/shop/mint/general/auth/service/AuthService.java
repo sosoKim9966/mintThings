@@ -12,7 +12,6 @@ public class AuthService {
     private final AuthMapper authMapper;
 
     public AuthVO findByUserId(String userId) {
-
         return authMapper.findByUserId(userId);
     }
 

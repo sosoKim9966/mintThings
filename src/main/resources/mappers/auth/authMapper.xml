@@ -53,4 +53,14 @@
         )
     </insert>-->
 
+    <!-- 아이디 중복 체크 -->
+    <select id="findUserId" resultType="com.shop.mint.general.auth.domain.AuthVO" >
+        SELECT
+            count(*)
+        FROM
+            user
+        WHERE
+            user_id = #{userId}
+    </select>
+
 </mapper>

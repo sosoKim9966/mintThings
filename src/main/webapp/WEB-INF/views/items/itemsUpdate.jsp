@@ -122,7 +122,7 @@ function aa() {
 		frm.submit();
 	 
 			
-	$("#frm").attr("action", "/items/registerOk").submit();
+	$("#frm").attr("action", "/items/updateOk").submit();
 }
 
 </script>
@@ -131,7 +131,8 @@ function aa() {
 <h2 style="text-align: center;">아이템 등록</h2><br><br><br>
 
 <div style="width: 60%; margin: auto;">
-	<form method="post" id="frm" enctype="multipart/form-data" >
+	<form method="post" id="frm" name="frm" enctype="multipart/form-data" action="/items/updateOk" >
+		<input type="hidden" id="item_No" name="item_No" value="${items.item_No}" />
 		<table>	
 			<tr>
 				<td><b>카테고리 이름 </b></td>
@@ -162,8 +163,9 @@ function aa() {
 			<textarea rows="5" cols="60" id="summernote" class="summernote" value="${items.item_Content }" name="item_Content"></textarea>
 			<input type="button" class="btn btn-primary" value="글 작성" style="float: right; margin-top: 10px;" onclick="aa();"/>
 			<input type="reset" class="btn btn-info" style="float: right; margin-top: 10px; margin-right: 10px;" value="다시 작성"/>
-		</div >
-	</form>
+			<input type="hidden" value="${items.item_No }" name="item_No" /> 
+		</div>
+	</form>	
 </div>
 <br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br>

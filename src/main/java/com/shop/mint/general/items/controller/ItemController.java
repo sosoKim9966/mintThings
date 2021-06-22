@@ -40,6 +40,7 @@ public class ItemController {
 	private ItemService itemServiceImpl;
 
 	ItemMapper itemMapper;
+	
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 
 	// 메인 상품리스트
@@ -54,22 +55,7 @@ public class ItemController {
 	// 카테고리별 상품리스트
 	@RequestMapping(value = "/cateList/Best10", method = RequestMethod.GET)
 	public String getCateList(Model model) throws Exception {
-
 		logger.info("(controller)getCateList 실행");
-
-//		int total = itemServiceImpl.countItem();
-//		if(nowPage == null && cntPerPage == null) {
-//			nowPage = "1";
-//			cntPerPage = "5";
-//		} else if(nowPage == null) {
-//			nowPage = "1";
-//		} else if(cntPerPage == null) {
-//			cntPerPage = "5";
-//		}
-//		
-//		pagingVO = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-//		model.addAttribute("paging", pagingVO);
-//		model.addAttribute("viewAll", itemServiceImpl.selectItem(pagingVO));
 		List<ItemVO> items = itemServiceImpl.getCateList();
 		model.addAttribute("items", items);
 		return "list/cateList";
@@ -78,9 +64,7 @@ public class ItemController {
 	// 상품 전체 리스트
 	@RequestMapping(value = "/cateList/all", method = RequestMethod.GET)
 	public String getAllList(Model model) throws Exception {
-
 		logger.info("(controller)getAllList 실행");
-
 		List<ItemVO> items = itemServiceImpl.getCateList();
 		model.addAttribute("items", items);
 		return "list/cateList";
@@ -100,36 +84,41 @@ public class ItemController {
 
 		return "list/itemDetail";
 	}
-	 
-	//아이템 등록 GET
-	@RequestMapping(value="/items/register", method = RequestMethod.GET) 
-	public String insertItem() { 
+
+	// 아이템 등록 GET
+	@RequestMapping(value = "/items/register", method = RequestMethod.GET)
+	public String GetinsertItem() {
 		logger.info("(controller)insertItem 실행");
-		return "items/itemsRegister"; 
-	}
-	 
-	//아이템 등록 POST
-	@RequestMapping(value="/items/ok", method = RequestMethod.POST ) 
-	public String itemRegister(MultipartHttpServletRequest request, @ModelAttribute ItemVO itemVO ) throws Exception {
-		logger.info("(controller)itemRegister 실행 ");
-		itemServiceImpl.insertItem(itemVO); 
-		return "redirect:/cateList/all"; 
-	 }
-	 
-	//아이템 수정
-	@RequestMapping(value="items/update/{item_No}")
-	public String itemUpdate(ItemVO itemVO, Model model) throws Exception {
-		logger.info("(controller)itemUpdate 실행" + itemVO);
-		List<ItemVO> items = itemServiceImpl.getMainList();
-		model.addAttribute("items", items);
-		itemServiceImpl.updateItem(itemVO);
 		return "items/itemsRegister";
 	}
-	
-	
-	//아이템 삭제 
+
+	// 아이템 등록 POST
+	@RequestMapping(value = "/items/registerOk", method = RequestMethod.POST)
+	public String postInsertItem(MultipartHttpServletRequest request, @ModelAttribute ItemVO itemVO) throws Exception {
+		logger.info("(controller)itemRegister 실행 ");
+		itemServiceImpl.insertItem(itemVO);
+		return "redirect:/cateList/all";
+	}
+
+	// 아이템 수정 GET
+	@RequestMapping(value = "/items/update/{item_No}", method = RequestMethod.GET)
+	public String getUpdateItem(@PathVariable int item_No, Model model) throws Exception {
+		logger.info("(controller)itemUpdate 실행 =>" + item_No );
+		model.addAttribute("items", itemServiceImpl.getItemDetail(item_No));
+		return "items/itemsUpdate";
+	}
+
+	//아이템 수정 POST
+	@RequestMapping(value="/items/updateOk", method = RequestMethod.POST) 
+	public String postUpdateItem(MultipartHttpServletRequest request, @ModelAttribute ItemVO itemVO) throws Exception { 
+		logger.info("(controller)itemUpdate 실행" + itemVO);
+		itemServiceImpl.updateItem(itemVO);
+		return "redirect:/cateList/all"; 
+	}
+	 
+	// 아이템 삭제
 	@RequestMapping("/items/delete/{item_No}")
-	public String itemDelete(@PathVariable int item_No) throws Exception{
+	public String itemDelete(@PathVariable int item_No) throws Exception {
 		logger.info("(controller)itemDelete 실행 ");
 		itemServiceImpl.deleteItem(item_No);
 		return "redirect:/cateList/all";

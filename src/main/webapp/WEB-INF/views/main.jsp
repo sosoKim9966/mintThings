@@ -39,14 +39,14 @@ div.content-page {
 		                        <div class="card product-box">
 		                            <div class="product-img">
 		                                <div class="p-3">
-		                                	<a href="/items/detail?item_no=${items.item_No}" class="move">
-		                                    <img src="../resources/images/items/${items.item_Image }" class="img-fluid" style=""/></a>
+		                                	<a href="/items/detail?itemNo=${items.itemNo}" class="move">
+		                                    <img src="../resources/images/items/${items.itemImage }" class="img-fluid" style=""/></a>
 		                                </div>
 		                                <form id="form1" name="form1" enctype="multipart/form-data" method="post">
 			                                <div class="product-action">
 			                                    <div class="d-flex" style="margin-bottom: -5px; margin-left: 18px;">
-			                                        <a href="/items/update/${items.item_No}" class="btn btn-white d-block w-100 action-btn m-2">Edit</a>
-			                                        <a href="/items/delete/${items.item_No}" id="deleteBtn" class="btn btn-white d-block w-100 action-btn m-2">Delete</a>
+			                                        <a href="/items/update/${items.itemNo}" class="btn btn-white d-block w-100 action-btn m-2">Edit</a>
+			                                        <a href="/items/delete/${items.itemNo}" id="deleteBtn" class="btn btn-white d-block w-100 action-btn m-2">Delete</a>
 			                                    </div>
 			                                </div>
 		                                </form>
@@ -54,9 +54,9 @@ div.content-page {
 		                            <div class="product-info border-top p-3">
 		                                <div>
 		                                    <h5 class="font-16 mt-0 mb-1">
-		                                   		<a href="/items/detail?item_no=${items.item_No}" class="move" style="margin-left: 27px; color: black;">${items.item_Name}</a> 
+		                                   		<a href="/items/detail?itemNo=${items.itemNo}" class="move" style="margin-left: 27px; color: black;">${items.itemName}</a> 
 		                                    </h5>
-		                                    <h4 class="m-0" style="margin-left: 27px;"> <span class="text-muted" > Price : <fmt:formatNumber value="${items.item_Price}" pattern="###,###,###"/></span></h4>
+		                                    <h4 class="m-0" style="margin-left: 27px;"> <span class="text-muted" > Price : <fmt:formatNumber value="${items.itemPrice}" pattern="###,###,###"/></span></h4>
 		                                </div>
 	                           		</div> <!-- end product info-->
 		                        </div>
@@ -70,22 +70,22 @@ div.content-page {
 			                        <div class="card product-box">
 			                            <div class="product-img">
 			                                <div class="p-3">
-			                                	<a href="/items/detail?item_no=${items.item_No}" class="move">
-			                                    <img src="../resources/images/items/${items.item_Image }" class="img-fluid" style=""/></a>
+			                                	<a href="/items/detail?itemNo=${items.itemNo}" class="move">
+			                                    <img src="../resources/images/items/${items.itemImage }" class="img-fluid" style=""/></a>
 			                                </div>
 			                                <div class="product-action">
 			                                    <div class="d-flex" style="margin-bottom: -5px; margin-left: 18px;">
-			                                         <a href="/items/update/${items.item_No}" class="btn btn-white d-block w-100 action-btn m-2">Edit</a>
-			                                    	<a href="/items/delete/${items.item_No}" id="deleteBtn" class="btn btn-white d-block w-100 action-btn m-2">Delete</a>
+			                                         <a href="/items/update/${items.itemNo}" class="btn btn-white d-block w-100 action-btn m-2">Edit</a>
+			                                    	<a href="/items/delete/${items.itemNo}" id="deleteBtn" class="btn btn-white d-block w-100 action-btn m-2">Delete</a>
 			                                    </div>
 			                                </div>
 			                            </div> 
 			                            <div class="product-info border-top p-3">
 			                                <div>
 			                                    <h5 class="font-16 mt-0 mb-1">
-			                                   		<a href="/items/detail?item_no=${items.item_No}" class="move" style="margin-left: 27px; color: black;">${items.item_Name}</a> 
+			                                   		<a href="/items/detail?itemNo=${items.itemNo}" class="move" style="margin-left: 27px; color: black;">${items.itemName}</a> 
 			                                    </h5>
-			                                    <h4 class="m-0" style="margin-left: 27px;"> <span class="text-muted" > Price : <fmt:formatNumber value="${items.item_Price}" pattern="###,###,###"/></span></h4>
+			                                    <h4 class="m-0" style="margin-left: 27px;"> <span class="text-muted" > Price : <fmt:formatNumber value="${items.itemPrice}" pattern="###,###,###"/></span></h4>
 			                                </div>
 		                            	</div> <!-- end product info-->
 			                        </div>

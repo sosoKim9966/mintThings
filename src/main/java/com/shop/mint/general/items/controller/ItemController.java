@@ -72,15 +72,15 @@ public class ItemController {
 
 	// 아이템 상세
 	@RequestMapping(value = "/items/detail", method = RequestMethod.GET)
-	public String getItemDetail(int item_no, Model model) throws Exception {
-		logger.info("(controller)getDetail 실행 item_no => " + item_no);
+	public String getItemDetail(int itemNo, Model model) throws Exception {
+		logger.info("(controller)getDetail 실행 itemNo => " + itemNo);
 		List<ItemOptionVO> itemOp = itemServiceImpl.getItemOption();
 		Set<ItemOptionVO> set = new HashSet<ItemOptionVO>(itemOp);
 		logger.info("(controller)중복행 제거 시작 ");
 		List<ItemOptionVO> newitemOp = new ArrayList<ItemOptionVO>(set);
 
 		model.addAttribute("itemOp", newitemOp);
-		model.addAttribute("items", itemServiceImpl.getItemDetail(item_no));
+		model.addAttribute("items", itemServiceImpl.getItemDetail(itemNo));
 
 		return "list/itemDetail";
 	}
@@ -101,10 +101,10 @@ public class ItemController {
 	}
 
 	// 아이템 수정 GET
-	@RequestMapping(value = "/items/update/{item_No}", method = RequestMethod.GET)
-	public String getUpdateItem(@PathVariable int item_No, Model model) throws Exception {
-		logger.info("(controller)itemUpdate 실행 =>" + item_No );
-		model.addAttribute("items", itemServiceImpl.getItemDetail(item_No));
+	@RequestMapping(value = "/items/update/{itemNo}", method = RequestMethod.GET)
+	public String getUpdateItem(@PathVariable int itemNo, Model model) throws Exception {
+		logger.info("(controller)itemUpdate 실행 =>" + itemNo );
+		model.addAttribute("items", itemServiceImpl.getItemDetail(itemNo));
 		return "items/itemsUpdate";
 	}
 
@@ -117,10 +117,10 @@ public class ItemController {
 	}
 	 
 	// 아이템 삭제
-	@RequestMapping("/items/delete/{item_No}")
-	public String itemDelete(@PathVariable int item_No) throws Exception {
+	@RequestMapping("/items/delete/{itemNo}")
+	public String itemDelete(@PathVariable int itemNo) throws Exception {
 		logger.info("(controller)itemDelete 실행 ");
-		itemServiceImpl.deleteItem(item_No);
+		itemServiceImpl.deleteItem(itemNo);
 		return "redirect:/cateList/all";
 	}
 

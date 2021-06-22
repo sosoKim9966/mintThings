@@ -8,14 +8,14 @@ import lombok.ToString;
 @Getter
 @ToString
 public class ItemVO {
-	private int item_No;
-	private String item_Category_Name;
-	private String item_Name;
-	private String item_Content;
-	private int item_Price;
-	private int item_Sale_Price;
-	private int item_Stock;
-	private String item_RefundYn;
-	private int item_View_Cnt;
-	private String item_Image;
+	private int itemNo;
+	private String itemCategoryName;
+	private String itemName;
+	private String itemContent;
+	private int itemPrice;
+	private int itemSalePrice;
+	private int itemStock;
+	private String itemRefundYn;
+	private int itemViewCnt;
+	private String itemImage;
 }

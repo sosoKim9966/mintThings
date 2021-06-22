@@ -23,7 +23,7 @@ public interface ItemService {
 	//public List<ItemVO> selectItem(PagingVO pagingVO);
 	
 	//아이템 상세
-	public ItemVO getItemDetail(int item_No) throws Exception; 
+	public ItemVO getItemDetail(int itemNo) throws Exception; 
 	
 	//아이템 상세 - 아이템 옵션
 	public List<ItemOptionVO> getItemOption() throws Exception; 
@@ -35,5 +35,5 @@ public interface ItemService {
 	public int updateItem(ItemVO itemVO) throws Exception;
 	
 	//아이템 삭제
-	public void deleteItem(int item_No) throws Exception;
+	public void deleteItem(int itemNo) throws Exception;
 }

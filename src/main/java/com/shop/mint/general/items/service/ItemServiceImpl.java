@@ -49,10 +49,10 @@ public class ItemServiceImpl implements ItemService {
 
 	//아이템 상세
 	@Override
-	public ItemVO getItemDetail(int item_No) throws Exception {
-		logger.info("(service)getItemDetail 실행" + item_No); 
+	public ItemVO getItemDetail(int itemNo) throws Exception {
+		logger.info("(service)getItemDetail 실행" + itemNo); 
 		
-		return itemMapper.getItemDetail(item_No);
+		return itemMapper.getItemDetail(itemNo);
 	}
 	
 	//아이템 상세 - 아이템 옵션
@@ -78,9 +78,9 @@ public class ItemServiceImpl implements ItemService {
 	
 	//아이템 삭제
 	@Override
-	public void deleteItem(int item_No) throws Exception {
+	public void deleteItem(int itemNo) throws Exception {
 		logger.info("(service)deleteItem 실행");
-		itemMapper.deleteItem(item_No);
+		itemMapper.deleteItem(itemNo);
 	}
 
 	

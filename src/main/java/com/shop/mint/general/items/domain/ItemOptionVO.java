@@ -8,10 +8,10 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ItemOptionVO {
-	private String item_No;
-	private String item_Size;
-	private String item_Color_Ip;
-	private String item_Lenght;
-	private String item_Model;
-	private String item_Color_As;
+	private String itemNo;
+	private String itemSize;
+	private String itemColorIp;
+	private String itemLenght;
+	private String itemModel;
+	private String itemColorAs;
 }

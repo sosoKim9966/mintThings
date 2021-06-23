@@ -1,5 +1,6 @@
 package com.shop.mint.jwtConfig;
 
+import com.shop.mint.general.auth.service.AuthService;
 import com.shop.mint.general.login.service.LoginService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -28,6 +29,7 @@ public class JwtTokenProvider {
     // 토큰 유효시간 30분
     private long tokenValidTime = 30 * 60 * 1000L;
     private final UserDetailsService userDetailsService;
+    private final AuthService authService;
 
     /**
      *
@@ -77,11 +79,11 @@ public class JwtTokenProvider {
      * @Description : JWT 토큰에서 인증 정보 조회
     * </pre>
      *
-     * @return
+     * @return 
      */
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
-        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+        return new UsernamePasswordAuthenticationToken(authService.findByUserId(this.getUserPk(token)), "", userDetails.getAuthorities());
     }
 
     /**

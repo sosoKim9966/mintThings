@@ -79,7 +79,7 @@ public class JwtTokenProvider {
      * @Description : JWT 토큰에서 인증 정보 조회
     * </pre>
      *
-     * @return 
+     * @return
      */
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));

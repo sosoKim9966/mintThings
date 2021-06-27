@@ -50,11 +50,11 @@
             , 'Y'
             , 'user'
             , #{role}
-        )
+        )00
     </insert>-->
 
     <!-- 아이디 중복 체크 -->
-    <select id="findUserId" resultType="com.shop.mint.general.auth.domain.AuthVO" >
+    <select id="findIdCheck" resultType="int" parameterType="String" >
         SELECT
             count(*)
         FROM

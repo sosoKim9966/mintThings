@@ -4,59 +4,130 @@
 	<!-- 메인 상품리스트 -->					
 	<select id="getMainList" resultType="com.shop.mint.general.items.domain.ItemVO">
 		SELECT 
-			item_no, 
-			item_image,
-			item_name,
-			item_price
+			i.item_no, 
+			i.item_name,
+			i.item_price,
+			t.idx, 
+			t.item_idx,
+			t.save_name
 		FROM
-			items
-		ORDER BY item_name DESC
+			items i, tb_attach t
+		WHERE
+			i.item_no = t.item_idx
+		ORDER BY 
+			i.item_name DESC
 	</select>
 	
 	<!-- 카테고리별 상품리스트 -->					
 	<select id="getCateList" resultType="com.shop.mint.general.items.domain.ItemVO">
 		SELECT 
-			item_no, 
-			item_image,
-			item_name,
-			item_price
+			i.item_no, 
+			i.item_name,
+			i.item_price,
+			t.idx, 
+			t.item_idx,
+			t.save_name
 		FROM
-			items
-		ORDER BY item_name DESC
+			items i, tb_attach t
+		WHERE
+			i.item_no = t.item_idx
+		ORDER BY 
+			i.item_name
+	</select>
+	
+	<!-- 카테고리별 상품리스트 -->					
+	<select id="getBesetList" resultType="com.shop.mint.general.items.domain.ItemVO">
+		SELECT 
+			i.item_no, 
+			i.item_name,
+			i.item_price,
+			t.idx, 
+			t.item_idx,
+			t.save_name, 
+			i.item_view_cnt
+		FROM
+			items i, tb_attach t
+		WHERE
+			i.item_no = t.item_idx
+		ORDER BY 
+			i.item_view_cnt DESC
+        LIMIT
+			10;   
+	</select>
+	
+	<!-- 카테고리별 상품리스트 -->					
+	<select id="getDetailCateList" resultType="com.shop.mint.general.items.domain.ItemVO" parameterType="String">
+		SELECT 
+			i.item_category_name,
+			i.item_no, 
+			i.item_name,
+			i.item_price,
+			t.idx, 
+			t.item_idx,
+			t.save_name
+		FROM
+			items i, tb_attach t
+		WHERE
+			i.item_no = t.item_idx
+		AND
+			i.item_category_name = #{itemCategoryName}
+		ORDER BY 
+			i.item_name 
 	</select>
 	
 	<!-- 상품 전체 리스트 -->					
 	<select id="getAllList" resultType="com.shop.mint.general.items.domain.ItemVO">
 		SELECT 
-			item_no, 
-			item_image,
-			item_name,
-			item_price
+			i.item_no, 
+			i.item_name,
+			i.item_price,
+			t.idx, 
+			t.item_idx,
+			t.save_name
 		FROM
-			items
-		ORDER BY item_name DESC
+			items i, tb_attach t
+		WHERE
+			i.item_no = t.item_idx
+		ORDER BY 
+			i.item_name 
 	</select>
 	
-	<!-- 총 아이템 갯수 출력  -->
+	<!-- 아이템 총개수 -->
 	<select id="countItems" resultType="int">
 		SELECT COUNT(*) FROM items
-	</select>
+	</select> 
 	
 	<!-- 아이템 상세 -->					
 	<select id="getItemDetail" resultType="com.shop.mint.general.items.domain.ItemVO">
 		SELECT 
-			item_no, 
-			item_image,
-			item_name,
-			item_price, 
-			item_sale_price, 
-			item_content,
-			item_category_name, 
-			item_stock
+			i.item_no, 
+			i.item_name,
+			i.item_price, 
+			i.item_sale_price, 
+			i.item_content,
+			i.item_category_name, 
+			i.item_stock,
+			i.item_view_cnt,
+			t.save_name,
+			t.idx,
+			t.original_name
 		FROM
-			items
-		WHERE item_no = #{item_No}
+			items i, tb_attach t
+		WHERE 
+			item_no = #{itemNo}
+		AND
+		 	i.item_no = t.item_idx
 	</select>
+
+	<!-- 아이템 조회수 -->
+	<update id="updateViewCnt" parameterType="int">
+		UPDATE
+			items
+		SET
+			item_view_cnt = item_view_cnt + 1
+		WHERE
+			item_no = #{itemNo}
+	</update>
 
 	<!-- 아이템 상세 아이템 옵션 -->					
 	<select id="getItemOption" resultType="com.shop.mint.general.items.domain.ItemOptionVO">
@@ -68,27 +139,61 @@
 	</select>
 	
 	<!-- 아이템 등록 -->
- 	<insert id="insertItem" parameterType="com.shop.mint.general.items.domain.ItemOptionVO">
-		INSERT INTO items(item_category_name, item_name, item_price, item_sale_price, item_stock, item_refund_yn, item_content)
-		VALUES(#{item_Category_Name}, #{item_Name}, #{item_Price}, #{item_Sale_Price}, #{item_Stock}, #{item_RefundYn}, #{item_Content})
+ 	<insert id="insertItem" parameterType="com.shop.mint.general.items.domain.ItemVO" >
+		INSERT INTO items (
+			item_category_name
+		  , item_name
+		  , item_price
+		  , item_sale_price
+		  , item_stock
+		  , item_refund_yn
+		  , item_content
+		  ) 
+		  VALUES (
+		  	#{itemCategoryName}
+		  , #{itemName}
+		  , #{itemPrice}
+		  , #{itemSalePrice}
+		  , #{itemStock}
+		  , #{itemRefundYn}
+		  , #{itemContent} 
+		)
 	</insert>
 	
 	<!-- 아이템 수정 -->
-	<update id="updateItem" >
-		UPDATE items SET item_category_name = #{item_Category_Name}, item_name = #{item_Name}, item_content = #{item_Content}, item_price = #{item_Price}, item_sale_price = #{item_Sale_Price}, 
-						 item_stock = #{item_Stock}, item_refund_yn = #{item_RefundYn}
-		WHERE item_no = #{item_No}
+	<update id="updateItem" parameterType="com.shop.mint.general.items.domain.ItemVO">
+		UPDATE 
+			items i, tb_attach t
+		SET 
+			i.item_category_name = #{itemCategoryName}
+		  , i.item_name = #{itemName}
+		  , i.item_content = #{itemContent}
+		  , i.item_price = #{itemPrice}
+		  , i.item_sale_price = #{itemSalePrice}
+		  , i.item_stock = #{itemStock}
+		  , i.item_refund_yn = #{itemRefundYn}
+		  , i.item_no = #{itemNo}
+		  , t.original_name = #{originalName}
+		  , t.item_idx = #{itemIdx}
+		WHERE
+			i.item_no = t.item_idx
+		AND 
+			i.item_no = #{itemNo} 
 	</update>
 	
-	<!-- 아이템 삭제 -->
-	<delete id="deleteItem" parameterType="com.shop.mint.general.items.domain.ItemVO">
+	<!-- 파일 삭제 -->	
+	<delete id="deleteFile" parameterType="int">
+		DELETE FROM tb_attach 
+		WHERE item_idx = #{itemIdx}
+	</delete> 
+	
+	<!-- 아이템 삭제 -->	
+	<delete id="deleteItem" parameterType="int">
 		DELETE FROM items
-		WHERE item_no = #{item_No}
+		WHERE item_no = #{itemNo}
 	</delete>
 	
-	
-	
-	
+
 	
 	
 	

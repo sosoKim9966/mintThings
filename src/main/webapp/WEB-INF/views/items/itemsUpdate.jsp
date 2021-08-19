@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
 <html>
@@ -122,7 +122,7 @@ function aa() {
 		frm.submit();
 	 
 			
-	$("#frm").attr("action", "/items/registerOk").submit();
+	$("#frm").attr("action", "/items/updateOk").submit();
 }
 
 </script>
@@ -131,7 +131,8 @@ function aa() {
 <h2 style="text-align: center;">아이템 등록</h2><br><br><br>
 
 <div style="width: 60%; margin: auto;">
-	<form method="post" id="frm" enctype="multipart/form-data" >
+	<form method="post" id="frm" name="frm" enctype="multipart/form-data" action="/items/updateOk" >
+		<input type="hidden" id="itemNo" name="itemNo" value="${items.itemNo}" />
 		<table>	
 			<tr>
 				<td><b>카테고리 이름 </b></td>
@@ -159,15 +160,19 @@ function aa() {
 			</tr>
 			<tr>
 				<td><b>아이템 썸네일 등록</b></td>
-				<td><input type="file" name="files" multiple="multiple" style= "margin-bottom: 5px;" /></td>
+				<td><input type="file" name="files" multiple="multiple" style= "margin-bottom: 5px;"  value="${items.originalName}" placeholder="'N', 'Y'"/></td>
 			</tr>
 		</table><br>
 		<div class="note-editable"> 
 			<textarea rows="5" cols="60" id="summernote" class="summernote" value="${items.itemContent }" name="itemContent"></textarea>
 			<input type="button" class="btn btn-primary" value="글 작성" style="float: right; margin-top: 10px;" onclick="aa();"/>
-			<input type="reset" class="btn btn-info" style="float: right; margin-top: 10px; margin-right: 10px;" value="다시 작성"/>
+			<input type="reset"  class="btn btn-info" style="float: right; margin-top: 10px; margin-right: 10px;" value="다시 작성"/>
+			<input type="hidden" name="itemNo" value="${items.itemNo}" />
+			<input type="hidden" name="originalName" value="${items.originalName}"/>
+			<input type="hidden" name="itemIdx" value="${items.itemIdx}"/>
+			<input type="hidden" name="originalName" value="${items.originalName}"/> 
 		</div>
-	</form>
+	</form>	
 </div>
 <br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br>

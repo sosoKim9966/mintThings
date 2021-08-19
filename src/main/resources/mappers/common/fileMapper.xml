@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mint.common.utils.FileMapper">
+	
+	<insert id="insertFile" parameterType="com.shop.mint.common.utils.FileVO">
+		<selectKey resultType="int" keyProperty="itemIdx" order="BEFORE">
+			SELECT IFNULL(MAX(item_no), 1) FROM items
+		</selectKey>
+		INSERT INTO tb_attach(
+		  idx 
+		  , item_idx 
+		  , original_name 
+		  , save_name  
+		  , file_url
+		) 
+		VALUES (
+		  #{idx}
+		  , #{itemIdx}
+		  , #{originalName}
+		  , #{saveName}
+		  , #{fileUrl} 
+		)
+	</insert>
+	
+		
+<!-- <update id="updateFile" parameterType="com.shop.mint.common.utils.FileVO">
+		UPDATE
+			items i, tb_attach t
+		SET
+			t.idx = #{idx}
+		  , t.item_idx = #{itemIdx}
+		  ,	t.original_name = #{originalName}
+		  ,	t.save_name = #{saveName}
+		  ,	t.file_url = #{fileUrl}
+		WHERE
+			t.item_idx = i.item_no
+		AND
+			i.item_no = #{itemNo}
+	</update> -->
+
+</mapper>

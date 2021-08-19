@@ -6,24 +6,14 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>민트띵스</title>
+  <title>mintThings</title>
   
   <!-- <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"> -->
   <link rel="stylesheet" href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" style="text/css" href="/resources/static/css/footer.css"/>
-  <script type="text/javascript" src="/resources/js/jquery-3.6.0.min.js"></script>
-  <!-- Ionicons 
-  <link rel="stylesheet" href="<c:url value='/resources/bower_components/Ionicons/css/ionicons.min.css' />">-->
-  <!-- Theme style 
-  <link rel="stylesheet" href="<c:url value='/resources/dist/css/AdminLTE.min.css' />">
-  -AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect. 
-  <link rel="stylesheet" href="<c:url value='/resources/dist/css/skins/skin-blue.min.css' />">-->
-
-  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+  <script type="text/javascript" src="/resources/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <!-- header -->

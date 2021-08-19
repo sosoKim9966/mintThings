@@ -1,21 +1,22 @@
 package com.shop.mint.general.items.domain;
 
+import com.shop.mint.common.utils.FileVO;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @Getter
-@ToString
-public class ItemVO {
+@Setter
+public class ItemVO extends FileVO{
 	private int itemNo;
-	private String itemCategoryName;
-	private String itemName;
-	private String itemContent;
 	private int itemPrice;
 	private int itemSalePrice;
 	private int itemStock;
-	private String itemRefundYn;
 	private int itemViewCnt;
+	private String itemCategoryName;
+	private String itemName;
+	private String itemContent;
+	private String itemRefundYn;
 	private String itemImage;
 }

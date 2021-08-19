@@ -11,16 +11,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailService implements UserDetailsService {
 
-    // 의존성 주입 해야함함
-    private final AuthMapper authMapper;
+	// 의존성 주입 해야함함 private final
+	AuthMapper authMapper;
 
-   @Override
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-       try {
-           return authMapper.findByUserId(userId);
-       } catch (UsernameNotFoundException e) {
-           return (UserDetails) new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
-       }
-    }
+	@Override
+	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+		try {
+			return authMapper.findByUserId(userId);
+		} catch (UsernameNotFoundException e) {
+			return (UserDetails) new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
+		}
+	}
 
 }

@@ -16,6 +16,12 @@ public interface ItemMapper {
 	//카테고리별 상품리스트
 	public List<ItemVO> getCateList() throws Exception;
 	
+	//카테고리별 상품리스트
+	public List<ItemVO> getBesetList() throws Exception;
+	
+	//카테고리별 상품리스트
+	public List<ItemVO> getDetailCateList(String itemCategoryName) throws Exception;
+	
 	//상품 전체 리스트
 	public List<ItemVO> getAllList() throws Exception;
 	
@@ -31,7 +37,10 @@ public interface ItemMapper {
 	//아이템 상세 - 아이템 옵션
 	public List<ItemOptionVO> getItemOption() throws Exception; 
 	
-	//아이템 등록
+	//아이템 조회수
+	public int updateViewCnt(int itemNo) throws Exception;
+
+	//아이템 등록 
 	public int insertItem(ItemVO itemVO) throws Exception;
 	
 	//아이템 수정
@@ -39,4 +48,8 @@ public interface ItemMapper {
 	
 	//아이템 삭제 
 	public void deleteItem(int itemNo) throws Exception;
+	
+	//파일 삭제 
+	public void deleteFile(int itemNo) throws Exception;
+	
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
 <html>
@@ -157,12 +157,16 @@ function aa() {
 				<td><b>아이템 환불여부</b></td>
 				<td><input type="text" name="itemRefundYn" style= "margin-bottom: 5px;"  value="${items.itemRefundYn}" placeholder="'N', 'Y'"/></td>
 			</tr>
+			<tr>
+				<td><b>아이템 썸네일 등록</b></td>
+				<td><input type="file" name="files" multiple="multiple" style= "margin-bottom: 5px;" /></td>
+			</tr>
 		</table><br>
 		<div class="note-editable"> 
 			<textarea rows="5" cols="60" id="summernote" class="summernote" value="${items.itemContent }" name="itemContent"></textarea>
 			<input type="button" class="btn btn-primary" value="글 작성" style="float: right; margin-top: 10px;" onclick="aa();"/>
 			<input type="reset" class="btn btn-info" style="float: right; margin-top: 10px; margin-right: 10px;" value="다시 작성"/>
-		</div >
+		</div>
 	</form>
 </div>
 <br><br><br><br><br><br><br>

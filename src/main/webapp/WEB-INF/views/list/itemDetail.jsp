@@ -3,7 +3,9 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +42,7 @@ div.col-lg-5 {
 						<div class="carousel-inner">
 							<div class="carousel-item active">
 								<div>
-									<img src="../resources/images/items/${items.itemImage }" alt="product-img" class="img-fluid">
+									<img src="<spring:url value='/getImage/${items.saveName}'/>" class="img-fluid"/>
 								</div>
 							</div>
 						</div>

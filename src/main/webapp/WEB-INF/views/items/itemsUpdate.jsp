@@ -158,12 +158,19 @@ function aa() {
 				<td><b>아이템 환불여부</b></td>
 				<td><input type="text" name="itemRefundYn" style= "margin-bottom: 5px;"  value="${items.itemRefundYn}" placeholder="'N', 'Y'"/></td>
 			</tr>
+			<tr>
+				<td><b>아이템 썸네일 등록</b></td>
+				<td><input type="file" name="files" multiple="multiple" style= "margin-bottom: 5px;"  value="${items.originalName}" placeholder="'N', 'Y'"/></td>
+			</tr>
 		</table><br>
 		<div class="note-editable"> 
 			<textarea rows="5" cols="60" id="summernote" class="summernote" value="${items.itemContent }" name="itemContent"></textarea>
 			<input type="button" class="btn btn-primary" value="글 작성" style="float: right; margin-top: 10px;" onclick="aa();"/>
-			<input type="reset" class="btn btn-info" style="float: right; margin-top: 10px; margin-right: 10px;" value="다시 작성"/>
-			<input type="hidden" value="${items.itemNo }" name="itemNo" /> 
+			<input type="reset"  class="btn btn-info" style="float: right; margin-top: 10px; margin-right: 10px;" value="다시 작성"/>
+			<input type="hidden" name="itemNo" value="${items.itemNo}" />
+			<input type="hidden" name="originalName" value="${items.originalName}"/>
+			<input type="hidden" name="itemIdx" value="${items.itemIdx}"/>
+			<input type="hidden" name="originalName" value="${items.originalName}"/> 
 		</div>
 	</form>	
 </div>

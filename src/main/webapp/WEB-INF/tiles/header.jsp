@@ -15,8 +15,8 @@
 
 <body>
 <nav class="navbar navbar-expand-sm">
-  <div class="collapse navbar-collapse" id="navbarsExample03">
-  	<ul class="navbar-nav mr-auto" style="list-style: none; margin-left: 325px; font-size: 12px;">
+  <div class="collapse navbar-collapse" id="navbarsExample03" style="margin-top: 5px;">
+  	<ul class="navbar-nav mr-auto" style="list-style: none; margin-left: 280px; font-size: 12px;">
       <li class="nav-item">
         <a class="nav-link" href="#" style="color: black; margin-right: 20px;">회원가입</a>
       </li>
@@ -33,31 +33,42 @@
         <a class="nav-link" href="#" style="color: black; margin-right: 20px;">마이페이지</a>
       </li> 
       <li class="nav-item">
-        <a class="nav-link" href="#" style="color: black; margin-right: 20px;">게시판</a>
+        <a class="nav-link" href="/board/notice" style="color: black; margin-right: 20px;">게시판</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/items/register" style="color: black;">상품등록</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-md-0">
-      <i class="fa fa-search" aria-hidden="true" style="color: black; margin-left: 500px;"></i>
+      <i class="fa fa-search" aria-hidden="true" style="color: black; margin-left: 575px;"></i>
       <input class="form-control" type="text" placeholder="Search" style="font-size: 12px;">
     </form>
   </div>
 </nav> <br><br><br>
-
 <div>
 	<h1 align="center" style="font: bold; font-size: 45px; margin-left: -30px;"><a href="/main" style="color:#B2EBF4; text-decoration: none ;">mintThings.</a></h1><br><br><hr> 
 	<div class="container">
 		<div class="row">
         <div>
-          <ul>
-            <li style="display: inline-block; margin-left: 100px; margin-right: 130px; "><a href="/cateList/Best10" style="color: black;">Best10</a></li>
-            <li style="display: inline-block; margin-right: 130px;"><a href="#" style="color: black;">apple watch</a></li>
-            <li style="display: inline-block; margin-right: 130px;"><a href="#" style="color: black;">iphone case</a></li>
-            <li style="display: inline-block; margin-right: 130px;"><a href="#" style="color: black;">airpods case</a></li>
-            <li style="display: inline-block; margin-right: 130px;"><a href="/cateList/all" style="color: black;">all</a></li>
-          </ul>
+        <c:choose> 
+            	<c:when test="${item eq 'item'}">
+            		<ul>
+			            <li style="display: inline-block; margin-left: 100px; margin-right: 130px; "><a href="/cateList/Best10" style="color: black;">Best10</a></li>
+			            <li style="display: inline-block; margin-right: 130px;"><a href="/cateList/strap" style="color: black;">apple watch</a></li>
+			            <li style="display: inline-block; margin-right: 130px;"><a href="/cateList/iphone" style="color: black;">iphone case</a></li>
+			            <li style="display: inline-block; margin-right: 130px;"><a href="/cateList/airpods" style="color: black;">airpods case</a></li>
+			            <li style="display: inline-block; margin-right: 130px;"><a href="/cateList/all" style="color: black;">all</a></li>
+			        </ul>
+            	</c:when>
+            	<c:when test="${board eq 'board'}">
+            		<ul>
+			            <li style="display: inline-block; margin-left: 200px; margin-right: 150px; "><a href="/board/notice" style="color: black;">NOTICE</a></li>
+			            <li style="display: inline-block; margin-right: 130px;"><a href="/board/qa" style="color: black;">Q&A</a></li>
+			            <li style="display: inline-block; margin-right: 130px;"><a href="/board/reivew" style="color: black;">REVIEW</a></li>
+			            <li style="display: inline-block; margin-right: 130px;"><a href="/board/photo" style="color: black;">PHOTO REVIEW</a></li>
+			        </ul>
+				</c:when>
+        </c:choose>     	
         </div>
       </div>
     </div>

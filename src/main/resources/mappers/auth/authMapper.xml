@@ -50,7 +50,17 @@
             , 'Y'
             , 'user'
             , #{role}
-        )
+        )00
     </insert>-->
+
+    <!-- 아이디 중복 체크 -->
+    <select id="findIdCheck" resultType="int" parameterType="String" >
+        SELECT
+            count(*)
+        FROM
+            user
+        WHERE
+            user_id = #{userId}
+    </select>
 
 </mapper>

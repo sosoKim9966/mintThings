@@ -19,4 +19,5 @@ public class ItemVO extends FileVO{
 	private String itemContent;
 	private String itemRefundYn;
 	private String itemImage;
+	
 }

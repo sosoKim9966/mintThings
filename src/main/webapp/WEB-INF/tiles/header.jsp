@@ -17,12 +17,20 @@
 <nav class="navbar navbar-expand-sm">
   <div class="collapse navbar-collapse" id="navbarsExample03" style="margin-top: 5px;">
   	<ul class="navbar-nav mr-auto" style="list-style: none; margin-left: 280px; font-size: 12px;">
-      <li class="nav-item">
-        <a class="nav-link" href="#" style="color: black; margin-right: 20px;">회원가입</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" style="color: black; margin-right: 20px;">로그인</a>
-      </li>
+      	<c:if test="${userId eq null}">
+	      <li class="nav-item">
+	        <a class="nav-link" href="#" style="color: black; margin-right: 20px;">회원가입</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/wtf" style="color: black; margin-right: 20px;">로그인</a>
+	      </li>  
+	    </c:if>
+	    <c:if test="${userId ne null}">
+	      	<p>반갑습니다. ${nickname}님</p>
+	      	 <li class="nav-item">
+		        <a class="nav-link" href="/wtf/logout" style="color: black; margin-right: 20px;">로그아웃</a>
+		     </li>  
+	    </c:if>
       <li class="nav-item">
         <a class="nav-link" href="#" style="color: black; margin-right: 20px;">주문조회</a>
       </li>
@@ -39,10 +47,35 @@
         <a class="nav-link" href="/items/register" style="color: black;">상품등록</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-md-0">
-      <i class="fa fa-search" aria-hidden="true" style="color: black; margin-left: 575px;"></i>
-      <input class="form-control" type="text" placeholder="Search" style="font-size: 12px;">
-    </form>
+    
+    <c:if test="${item eq 'item'}">
+		<form class="form-inline my-2 my-md-0">
+			<select id="searchTypeSel" name="searchType" style="margin-left: 350px; display: none;">
+				<option value="t"></option> 
+				<option value="c"></option>
+				<option value="w"></option>
+				<option value="tc"></option>
+				<option value="all"></option>
+			</select>
+			<i class="fa fa-search" aria-hidden="true" style="color: black; margin-left: 575px;"></i>
+			<input class="form-control" type="text" placeholder="Search" id="keyword" name="keyword" value="${pageMaker.cri.keyword}" style="font-size: 12px;">
+			<button id="searchBtn" class="btn btn-primary" style="display: none;"></button>
+		</form>
+    </c:if>
+    <c:if test="${board eq 'board'}">
+       <div class="form-inline my-2 my-md-0" >
+		<select id="searchTypeSel" name="searchType" style="margin-left: 350px; display: none;">
+			<option value="t"></option> 
+			<option value="c"></option>
+			<option value="w"></option>
+			<option value="tc"></option>
+			<option value="all"></option>
+		</select>
+		<i class="fa fa-search" aria-hidden="true" style="color: black; margin-left: 575px;"></i>
+		<input class="form-control" type="text" placeholder="Search" id="keyword" name="keyword" value="${pageMaker.cri.keyword}" style="font-size: 12px;">
+		<button id="searchBtn" class="btn btn-primary" style="display: none;"></button>
+	</div>
+    </c:if>
   </div>
 </nav> <br><br><br>
 <div>
@@ -73,5 +106,8 @@
       </div>
     </div>
 </div>
+<script type="text/javascript">
+
+</script>
 </body>
 </html>

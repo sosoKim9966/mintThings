@@ -2,13 +2,12 @@ package com.shop.mint.general.commonBoard.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shop.mint.common.utils.Criteria;
 import com.shop.mint.general.commonBoard.domain.BoardVO;
 import com.shop.mint.general.commonBoard.mapper.BoardMapper;
 
@@ -22,11 +21,17 @@ public class BoardServiceImpl implements BoardService {
 	
 	//게시글 목록
 	@Override
-	public List<BoardVO> getList() throws Exception {
+	public List<BoardVO> getList(Criteria cri) throws Exception {
 		logger.info("(service)getList 실행");
-		return boardMapper.getList();
+		return boardMapper.getList(cri);
 	}
 
+	//총 게시글 개수
+	@Override
+	public int getBoardCount() {
+		return boardMapper.getBoardCount();
+	}
+	
 	//게시글 상세
 	@Override
 	public BoardVO getListDetail(int noticeNo) throws Exception {

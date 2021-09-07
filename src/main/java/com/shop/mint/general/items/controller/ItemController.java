@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.shop.mint.common.utils.Criteria;
 import com.shop.mint.common.utils.FileVO;
+import com.shop.mint.common.utils.PageMaker;
 import com.shop.mint.general.items.domain.ItemOptionVO;
 import com.shop.mint.general.items.domain.ItemVO;
 import com.shop.mint.general.items.service.ItemService;
@@ -37,10 +39,18 @@ public class ItemController {
 
 	// 메인 상품리스트
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String getmainList(Model model) throws Exception {
+	public String getmainList(Model model, Criteria cri) throws Exception {
 		logger.info("(controller)getmainList 실행");
-		List<ItemVO> items = itemServiceImpl.getMainList();
+		PageMaker pageMaker = new PageMaker();
+		int perPageNum = 12;
+		cri.setPerPageNum(perPageNum);
+		System.out.println("한 페이지에 보여줄 아이템 개수 ==> " + cri.getPerPageNum());
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(itemServiceImpl.getItemsCount());
+		
+		List<ItemVO> items = itemServiceImpl.getMainList(cri);
 		model.addAttribute("items", items);
+		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("item", "item");
 		return "main";
 	}
@@ -49,7 +59,7 @@ public class ItemController {
 	@RequestMapping(value = "/cateList/Best10", method = RequestMethod.GET)
 	public String getCateList(Model model) throws Exception {
 		logger.info("(controller)getCateList 실행");
-		List<ItemVO> items = itemServiceImpl.getBesetList();
+		List<ItemVO> items = itemServiceImpl.getBestList();
 		model.addAttribute("items", items);
 		model.addAttribute("Best10", "Best10");
 		model.addAttribute("item", "item");
@@ -68,11 +78,20 @@ public class ItemController {
 	
 	// 상품 전체 리스트
 	@RequestMapping(value = "/cateList/all", method = RequestMethod.GET)
-	public String getAllList(Model model) throws Exception {
+	public String getAllList(Model model, Criteria cri) throws Exception {
 		logger.info("(controller)getAllList 실행");
-		List<ItemVO> items = itemServiceImpl.getCateList();
+		PageMaker pageMaker = new PageMaker();
+		int perPageNum = 12;
+		cri.setPerPageNum(perPageNum);
+		System.out.println("한 페이지에 보여줄 아이템 개수 ==> " + cri.getPerPageNum());
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(itemServiceImpl.getItemsCount());
+
+		List<ItemVO> items = itemServiceImpl.getCateList(cri);
 		model.addAttribute("items", items);
+		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("item", "item");
+		model.addAttribute("all", "all");
 		return "list/cateList";
 	}
 

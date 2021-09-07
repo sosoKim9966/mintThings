@@ -1,24 +1,18 @@
 package com.shop.mint.general.items.service;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.shop.mint.common.utils.Criteria;
 import com.shop.mint.common.utils.FileMapper;
-//import com.shop.mint.common.utils.FileUtils;
+
 import com.shop.mint.common.utils.FileVO;
-import com.shop.mint.general.items.controller.ItemController;
 import com.shop.mint.general.items.domain.ItemOptionVO;
 import com.shop.mint.general.items.domain.ItemVO;
 import com.shop.mint.general.items.mapper.ItemMapper;
@@ -39,23 +33,23 @@ public class ItemServiceImpl implements ItemService {
 	
 	//메인 상품리스트
 	@Override
-	public List<ItemVO> getMainList() throws Exception {
+	public List<ItemVO> getMainList(Criteria cri) throws Exception {
 		logger.info("(service)getMainList 실행");
-		return itemMapper.getMainList();
+		return itemMapper.getMainList(cri);
 	}
 	
 	//카테고리별 상품리스트
 	@Override
-	public List<ItemVO> getCateList() throws Exception {
+	public List<ItemVO> getCateList(Criteria cri) throws Exception {
 		logger.info("(service)getCateList 실행"); 
-		return itemMapper.getCateList();
+		return itemMapper.getCateList(cri);
 	}
 	
 	//베스트10 상품리스트
 	@Override
-	public List<ItemVO> getBesetList() throws Exception {
+	public List<ItemVO> getBestList() throws Exception {
 		logger.info("(service)getBesetList 실행"); 
-		return itemMapper.getBesetList();
+		return itemMapper.getBestList();
 	}
 	
 	//카테고리별 상품리스트
@@ -74,9 +68,9 @@ public class ItemServiceImpl implements ItemService {
 
 	//총 아이템 갯수 출력
 	@Override
-	public int getCountItems() {
+	public int getItemsCount() {
 		logger.info("(service)getCountItems 실행"); 
-		return itemMapper.getCountItems();
+		return itemMapper.getItemsCount();
 	}
 
 	//아이템 상세

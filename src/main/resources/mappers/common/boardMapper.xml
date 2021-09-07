@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.mint.general.commonBoard.mapper.BoardMapper">
 	<!-- 글 목록 가져오기(공지) -->
-	<select id="getList" resultType="com.shop.mint.general.commonBoard.domain.BoardVO">
+	<select id="getList" resultType="com.shop.mint.general.commonBoard.domain.BoardVO" parameterType="com.shop.mint.common.utils.Criteria">
 		SELECT 
 			notice_no
 		  , notice_title
@@ -13,6 +13,16 @@
 			notice_board
 		ORDER BY
 			notice_no
+		LIMIT
+			#{pageStart}, #{perPageNum}
+	</select>
+	
+	<!-- 게시글 개수 -->
+	<select id="getBoardCount" resultType="Integer">
+		SELECT 
+			COUNT(*)
+		FROM   
+			notice_board
 	</select>
 	
 	<!-- 게시글 조회수 -->

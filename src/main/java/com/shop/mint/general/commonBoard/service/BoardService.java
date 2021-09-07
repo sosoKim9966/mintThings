@@ -2,14 +2,16 @@ package com.shop.mint.general.commonBoard.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.shop.mint.common.utils.Criteria;
 import com.shop.mint.general.commonBoard.domain.BoardVO;
 
 public interface BoardService {
 	
 	//게시글 목록
-	public List<BoardVO> getList() throws Exception;
+	public List<BoardVO> getList(Criteria cri) throws Exception;
+	
+	//총 개시글 개수
+	public int getBoardCount();
 	
 	//게시글 상세 
 	public BoardVO getListDetail(int noticeNo) throws Exception;

@@ -85,16 +85,15 @@ div.content-page1{
 								<th>조회</th>
 							</tr>
 				    		</thead>
-				    		<c:forEach var="list" items="${list}">
+				    		<c:forEach var="list" items="${list}" varStatus="status">
 					    		<tbody>
 					    		<tr>
-					    			<td>${list.noticeNo}</td>
+					    			<td>${status.count}</td>
 					    			<td><a href="/board/detail?noticeNo=${list.noticeNo}">${list.noticeTitle}</a></td>
 					    			<td>${list.noticeWriter}</td>
 					    			<td><fmt:formatDate value="${list.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
 					    			<td>${list.noticeViewCnt}</td>
 					    		</tr>
-					    		
 					    		</tbody>
 				    		</c:forEach>
 				    	</table>
@@ -102,11 +101,74 @@ div.content-page1{
 		    	</div>
 		    </div>  
         </div> 
+        <ul class="btn-group pagination" style="margin: -250px 0 0 580px;">
+		    <c:if test="${pageMaker.prev}">
+		    <li>
+		        <a href='<c:url value="/board/notice?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a>
+		    </li>
+		    </c:if>
+		    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+		    <li>
+		        <a href='<c:url value="/board/notice?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
+		    </li>
+		    </c:forEach>
+		    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+		    <li>
+		        <a href='<c:url value="/board/notice?page=${pageMaker.endPage+1 }"/>'><i class="fa fa-chevron-right"></i></a>
+		    </li>
+		    </c:if>
+		</ul>
         <div class="ec-base-button">
-				<span class="gRight">
-					<a href="/board/insert" class="btn btn-info" style="text-decoration: none; margin-left: 1180px; margin-top: -40px;">글쓰기</a>
-				</span>
-			</div>
-	</div> 
+			<span class="gRight">
+				<a href="/board/insert" class="btn btn-info" style="text-decoration: none; margin-left: 1180px; margin-top: -40px;">글쓰기</a>
+			</span>
+		</div>
+	</div>
+<script type="text/javascript">
+$(function(){
+	//searchType select 박스 설정
+	setSearchTypeSelect();
+	
+	//prev 버튼 활성화, 비활성화 처리
+	var canPrev = '${pageMaker.prev}';
+	if(canPrev !== 'true'){
+		$('#page-prev').addClass('disabled');
+	}
+	
+	//next 버튼 활성화, 비활성화 처리
+	var canNext = '${pageMaker.next}';
+	if(canNext !== 'true'){
+		$('#page-next').addClass('disabled');
+	}
+	
+	//현재 페이지 파란색으로 활성화
+	var thisPage = '${pageMaker.cri.page}';
+	//매번 refresh 되므로 다른 페이지 removeClass 할 필요는 없음->Ajax 이용시엔 해야함
+	$('#page'+thisPage).addClass('active');
+})
+
+function setSearchTypeSelect(){
+	var $searchTypeSel = $('"all"');
+	var $keyword = $('#keyword');
+	
+	$searchTypeSel.val('${pageMaker.cri.searchType}').prop("selected",true);
+	//검색 버튼이 눌리면
+	$('#searchBtn').on('click',function(){
+		var searchTypeVal = $searchTypeSel.val();
+		var keywordVal = $keyword.val();
+		
+		if(!keywordVal){
+			alert("검색어를 입력하세요!");
+			$('#keyword').focus();
+			return;
+		}
+		var url = "main?page=1"
+			+ "&perPageNum=" + "${pageMaker.cri.perPageNum}"
+			+ "&searchType=" + searchTypeVal
+			+ "&keyword=" + encodeURIComponent(keywordVal);
+		window.location.href = url;
+	});
+};
+</script>	 
 </body>
 </html>

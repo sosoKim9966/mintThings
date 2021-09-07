@@ -29,8 +29,56 @@ div.col-lg-5 {
 	margin-top: -570px;
 	margin-right: 450px;
 }
+
+#sum {
+	border:none;
+	border-right:0px; 
+	border-top:0px; 
+	boder-left:0px; 
+	boder-bottom:0px;
+}
 </style>
-<body>
+<body onload="init();">
+<script type="text/javascript">
+
+  var sell_price;
+  var amount;
+
+  function init() {
+  	sell_price = document.form.sell_price.value;
+  	amount = document.form.amount.value;
+  	document.form.sum.value = sell_price;
+  	change();
+  }
+
+  function add() {
+  	hm = document.form.amount;
+  	sum = document.form.sum;
+  	hm.value ++ ;
+
+  	sum.value = parseInt(hm.value) * sell_price;
+  }
+
+  function del() {
+  	hm = document.form.amount;
+  	sum = document.form.sum;
+  		if (hm.value > 1) {
+  			hm.value -- ;
+  			sum.value = parseInt(hm.value) * sell_price;
+  		}
+  }
+
+  function change() {
+  	hm = document.form.amount;
+  	sum = document.form.sum;
+
+  		if (hm.value < 0) {
+  			hm.value = 0;
+  		}
+  	sum.value = parseInt(hm.value) * sell_price;
+  }  
+ </script>
+
 <!-- 카테고리 넘버에 따라 보여주는 페이지가 다름 넘겨받은 값에 따라 itemCategory == 200 , itemCategory -->
 <div class="content-page">
 	<div class="content">
@@ -63,7 +111,7 @@ div.col-lg-5 {
 				</div>
 				<hr/>
 			<div>
-			<form class="d-flex flex-wrap align-items-center mb-3">
+			<form class="d-flex flex-wrap align-items-center mb-3" name="form">
 				<label class="my-1 me-2" for="quantityinput">기종</label>
 					<div class="me-sm-3">
 						<select name="beforeAuth" >
@@ -84,14 +132,14 @@ div.col-lg-5 {
 				</div><hr/>
 				<label class="my-1 me-2" for="sizeinput">수량</label>
 				<div class="me-sm-3">
-					<input type="number" class="numBox" min="1" max="${items.itemStock}" value="1" readonly="readonly"/>
-					<button type="button" class="plus">+</button>
-					<button type="button" class="minus">-</button>
+					<input type=hidden name="sell_price" value="${items.itemSalePrice }">
+					<input type="number" name="amount" class="numBox" min="1" max="${items.itemStock}" value="1" onchange="change();"/>
+					<button type="button" class="plus" onclick="add();">+</button>
+					<button type="button" class="minus" onclick="del();">-</button>
 				</div><hr/>
 				<div class="mt-3" id="totalItemPrice">
-					<b>총 상품 금액&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${items.itemPrice}"/>원</b>
+					<b>총 상품 금액&nbsp;&nbsp;&nbsp;&nbsp;</b><input style="width: 45px; text-align: right;" id="sum" name="sum">원
 				</div>		
-				
 			</form>
 			<br>
 			<div style="margin-top: 10px;">
@@ -116,50 +164,6 @@ div.col-lg-5 {
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<script>
-  $(".plus").click(function(){
-   var num = $(".numBox").val();
-   var plusNum = Number(num) + 1;
-   
-   if(plusNum >= ${items.itemStock}) {
-    $(".numBox").val(num);
-   } else {
-    $(".numBox").val(plusNum);          
-   }
-  });
-  
-  $(".minus").click(function(){
-   var num = $(".numBox").val();
-   var minusNum = Number(num) - 1;
-   
-   if(minusNum <= 0) {
-    $(".numBox").val(num);
-   } else {
-    $(".numBox").val(minusNum);          
-   }
-  });
-
-<%--   if(!id.equals("NOT")) { %>
-	구매수량 : <input type="text" id="buycount" size="4" name="buycount" value="1"> 권
-	<b><font color="red"><label id="totalAmount"></label></font></b>
-	<input type="hidden" name="bookid" 	value="<%=bookid %>"/>
-	<input type="hidden" name="bookimage" 	value="<%=book.getBookimage() %>"/>
-	<input type="hidden" name="booktitle"	value="<%=book.getBooktitle() %>"/>
-	<input type="hidden" name="buyprice" 	value="<%=buyprice %>"/>
-	<input type="hidden" name="bookkind" 	value="<%=book.getBookkind() %>"/>
-	<input type="submit" class="btn btn-warning btn-sm" value="장바구니에 담기"/> 
-<%}
-} %>
-
- --%>  
-  
-  var $input = $('.numBox');
-  $(".numBox").on('input', function() {
-  	
-  		$('.numBox').text("총구매가 : " + (Number(${items.itemSalePrice}) * Number($('.numBox').val())).toLocaleString() + "원");
-  
-  });
- </script>
 
 </body>
 </html>

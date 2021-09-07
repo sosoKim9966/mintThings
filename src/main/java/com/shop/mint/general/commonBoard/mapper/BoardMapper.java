@@ -4,14 +4,18 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.shop.mint.common.utils.Criteria;
 import com.shop.mint.general.commonBoard.domain.BoardVO;
 
 @Mapper
 public interface BoardMapper {
 	
 	//게시글 목록
-	public List<BoardVO> getList() throws Exception;
+	public List<BoardVO> getList(Criteria cri) throws Exception;
 
+	//게시글 총 개수 
+	public int getBoardCount();
+	
 	//게시글 조회수 
 	public int boardViewCnt(int noticeNo) throws Exception;
 	

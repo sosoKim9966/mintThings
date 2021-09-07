@@ -38,7 +38,15 @@ div.content-page {
     padding-right: 5px;
 }
 
-
+#talk {
+ 	overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    display: block;
+    margin-left: 27px; 
+    color: black; 
+    padding:0 5px;
+}
 
 </style>
 <body>
@@ -109,7 +117,7 @@ div.content-page {
 			                            <div class="product-info border-top p-3">
 			                                <div>
 			                                    <h5 class="font-16 mt-0 mb-1">
-			                                   		<a href="/items/detail?itemNo=${items.itemNo}" class="move" style="margin-left: 27px; color: black;">${items.itemName}</a> 
+			                                   		<a href="/items/detail?itemNo=${items.itemNo}" class="move" id="talk">${items.itemName}</a> 
 			                                    </h5>
 			                                    <h4 class="m-0" style="margin-left: 27px;"> <span class="text-muted" > Price : <fmt:formatNumber value="${items.itemPrice}" pattern="###,###,###"/></span></h4>
 			                                </div>
@@ -136,7 +144,7 @@ div.content-page {
 			                            <div class="product-info border-top p-3">
 			                                <div>
 			                                    <h5 class="font-16 mt-0 mb-1">
-			                                   		<a href="/items/detail?itemNo=${items.itemNo}" class="move" style="margin-left: 27px; color: black;">${items.itemName}</a> 
+			                                   		<a href="/items/detail?itemNo=${items.itemNo}" id="talk" class="move">${items.itemName}</a> 
 			                                    </h5>
 			                                    <h4 class="m-0" style="margin-left: 27px;"> <span class="text-muted" > Price : <fmt:formatNumber value="${items.itemPrice}" pattern="###,###,###"/></span></h4>
 			                                </div>
@@ -146,36 +154,50 @@ div.content-page {
 							</c:otherwise>
 						</c:choose>
                		</c:forEach>
-                </div>
-	            <!-- 페이징 시작 -->    
-                <div class="row">
-                    <div class="col-12">
-                       <c:if test ="${paging.startPage != 1 }">
-                       		<a href="/list/cateList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-                       </c:if>
-                       <c:forEach begin="${paging.startPage}" end="${paging.endPage }" var="p">
-                       		<c:choose>
-                       			<c:when test="${p == paging.nowPage }">
-                       				<b>${p }</b>
-                       			</c:when>
-                       			<c:when test="${p != paging.nowPage }">
-									<a href="/list/cateList?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-                       			</c:when>
-                       		</c:choose>
-                       </c:forEach>
-                       <c:if test="${paging.endPage != paging.lastPage }">
-                       		<a href="/list/cateList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-                       </c:if>
-                    </div> 
-                </div> 
-                <!-- end row-->
-                
+                </div>                
             </div> <!-- container -->
-
         </div> <!-- content -->
-		
     </div>
-
+    <c:choose> 
+        <%-- <c:when test="${itemCategoryName eq itemCategoryName}">
+			<ul class="btn-group pagination" style="margin-left: 580px;">
+			    <c:if test="${pageMaker.prev}">
+				    <li>
+				        <a href='<c:url value="/cateList/${itemCategoryName}?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a>
+				    </li>
+				    </c:if>
+				    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="pageNum">
+				    <li>
+				        <a href='<c:url value="/cateList/${itemCategoryName}?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
+				    </li>
+				    </c:forEach>
+				    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+				    <li>
+				        <a href='<c:url value="/cateList/${itemCategoryName}?page=${pageMaker.endPage+1 }"/>'><i class="fa fa-chevron-right"></i></a>
+				    </li>
+			    </c:if>
+			</ul>
+        </c:when> --%>
+        <c:when test="${all eq 'all'}">
+			<ul class="btn-group pagination" style="margin-left: 890px;">
+			    <c:if test="${pageMaker.prev}">
+				    <li>
+				        <a href='<c:url value="/cateList/all?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a>
+				    </li>
+				    </c:if>
+				    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="pageNum">
+				    <li>
+				        <a href='<c:url value="/cateList/all?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
+				    </li>
+				    </c:forEach>
+				    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+				    <li>
+				        <a href='<c:url value="/cateList/all?page=${pageMaker.endPage+1 }"/>'><i class="fa fa-chevron-right"></i></a>
+				    </li>
+			    </c:if>
+			</ul>
+        </c:when>
+	</c:choose>
     <!-- ============================================================== -->
     <!-- End Page content -->
     <!-- ============================================================== -->

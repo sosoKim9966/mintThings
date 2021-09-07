@@ -11,8 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.shop.mint.common.utils.Criteria;
+import com.shop.mint.common.utils.PageMaker;
 import com.shop.mint.general.commonBoard.domain.BoardVO;
 import com.shop.mint.general.commonBoard.service.BoardService;
 
@@ -26,11 +27,17 @@ public class BoardController {
 	
 	//게시글 목록
 	@RequestMapping(value="/board/notice", method = RequestMethod.GET)
-	public String getBoard(Model model) throws Exception {
+	public String getBoard(Model model, Criteria cri) throws Exception {
 		logger.info("(controller)getBoard 실행");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(boardServiceImpl.getBoardCount());
+		
 		model.addAttribute("board", "board");
-		List<BoardVO> list = boardServiceImpl.getList();
+		List<BoardVO> list = boardServiceImpl.getList(cri);
 		model.addAttribute("list", list);
+		model.addAttribute("pageMaker", pageMaker);
 		return "board/board";
 	}
 	
